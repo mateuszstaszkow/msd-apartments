@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, Phone, X } from 'lucide-react';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
+import { asset } from '@/lib/asset';
 import { cx } from '@/lib/format';
 import { useScrollLock, useScrolled } from '@/lib/hooks';
 import { ButtonAnchor } from '@/components/ui/Button';
@@ -52,7 +53,7 @@ export function Header() {
               )}
             >
               <img
-                src="/logo-mark.png"
+                src={asset('logo-mark.png')}
                 alt=""
                 width={124}
                 height={92}

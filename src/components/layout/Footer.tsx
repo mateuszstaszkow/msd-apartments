@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 import { apartments } from '@/data/apartments';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
+import { asset } from '@/lib/asset';
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '@/components/ui/BrandIcons';
 import { Reveal } from '@/components/ui/Reveal';
 
@@ -19,7 +20,13 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <Reveal>
             <div className="inline-flex rounded-2xl bg-white p-3">
-              <img src="/logo-mark.png" alt={site.name} width={150} height={111} className="h-12 w-auto" />
+              <img
+                src={asset('logo-mark.png')}
+                alt={site.name}
+                width={150}
+                height={111}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-sea-200/80">
               {t('footer.tagline')}

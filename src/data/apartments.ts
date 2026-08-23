@@ -1,4 +1,5 @@
 import type { Apartment } from '@/types';
+import { asset } from '@/lib/asset';
 import { thumbnailSources } from '@/lib/youtube';
 
 /**
@@ -350,9 +351,8 @@ export const PHOTOS_PER_APARTMENT = 8;
 
 /** Photo slots reserved for every apartment: /apartments/<slug>/01.jpg … 08.jpg */
 export function photoPaths(slug: string): string[] {
-  return Array.from(
-    { length: PHOTOS_PER_APARTMENT },
-    (_, i) => `/apartments/${slug}/${String(i + 1).padStart(2, '0')}.jpg`,
+  return Array.from({ length: PHOTOS_PER_APARTMENT }, (_, i) =>
+    asset(`apartments/${slug}/${String(i + 1).padStart(2, '0')}.jpg`),
   );
 }
 

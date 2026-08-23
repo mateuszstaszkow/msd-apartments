@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Download, X } from 'lucide-react';
 import { useI18n } from '@/i18n';
+import { asset } from '@/lib/asset';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -55,7 +56,7 @@ export function InstallPrompt() {
         >
           <div className="flex items-start gap-4">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sea-50">
-              <img src="/favicon.svg" alt="" width={28} height={28} className="h-7 w-7" />
+              <img src={asset('favicon.svg')} alt="" width={28} height={28} className="h-7 w-7" />
             </span>
             <div className="min-w-0 flex-1">
               <p className="font-display text-sm font-semibold text-ink">{t('pwa.install.title')}</p>

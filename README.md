@@ -128,6 +128,29 @@ serverless function) in `ContactPage.tsx` when one exists.
 
 ## Deployment
 
+### GitHub Pages (configured)
+
+`.github/workflows/deploy.yml` builds and publishes the site on every push to
+`main`. Enable it once, in **Settings → Pages → Build and deployment →
+Source: GitHub Actions**. After that the site lives at
+`https://<user>.github.io/<repo>/`.
+
+Two details make the sub-path work, and both are automatic:
+
+- `actions/configure-pages` reports the path and the build reads it from
+  `BASE_PATH`, so `vite.config.ts` sets `base`, the router `basename`, and the
+  manifest `scope` accordingly. Anything in `public/` must be referenced through
+  `asset()` (`src/lib/asset.ts`) rather than a leading slash.
+- Pages has no SPA rewrite rule, so the build also writes `dist/404.html` as a
+  copy of the app shell. Deep links land there and the router takes over.
+
+Attaching a custom domain needs no code change: `configure-pages` then reports
+`/` and the base collapses back to the root.
+
+`.github/workflows/ci.yml` type-checks and builds every pull request.
+
+### Anywhere else
+
 Any static host works. The app uses client-side routing, so rewrite all
 unmatched paths to `index.html`:
 

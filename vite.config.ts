@@ -1,9 +1,33 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { copyFileSync, existsSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 
+/**
+ * GitHub Pages serves project sites from `/<repo>/`; the deploy workflow feeds
+ * that in as BASE_PATH. Everything else (local dev, custom domain) sits at `/`.
+ */
+const base = `/${(process.env.BASE_PATH ?? '/').replace(/^\/|\/$/g, '')}/`.replace('//', '/');
+
+/**
+ * GitHub Pages has no SPA rewrite rule, so deep links such as `/apartments/zagiel`
+ * hit the 404 handler. Shipping the app shell as 404.html makes the router pick
+ * the URL up from there.
+ */
+function spaFallback(): Plugin {
+  return {
+    name: 'msd-spa-fallback',
+    apply: 'build',
+    closeBundle() {
+      const dist = fileURLToPath(new URL('./dist/', import.meta.url));
+      if (existsSync(`${dist}index.html`)) copyFileSync(`${dist}index.html`, `${dist}404.html`);
+    },
+  };
+}
+
 export default defineConfig({
+  base,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -17,6 +41,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,jpg,jpeg,woff2}'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        navigateFallback: `${base}index.html`,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
@@ -56,21 +81,27 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         lang: 'en',
         categories: ['travel', 'lifestyle', 'business'],
         icons: [
-          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
-          { src: '/icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: `${base}icons/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: `${base}icons/icon-512.png`, sizes: '512x512', type: 'image/png', purpose: 'any' },
+          {
+            src: `${base}icons/icon-maskable-512.png`,
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
         ],
         shortcuts: [
-          { name: 'Catalogue', short_name: 'Catalogue', url: '/apartments' },
-          { name: 'Contact', short_name: 'Contact', url: '/contact' },
+          { name: 'Catalogue', short_name: 'Catalogue', url: `${base}apartments` },
+          { name: 'Contact', short_name: 'Contact', url: `${base}contact` },
         ],
       },
     }),
+    spaFallback(),
   ],
   build: {
     target: 'es2020',
