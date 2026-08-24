@@ -7,18 +7,22 @@ import {
   Bath,
   BedDouble,
   Building2,
+  CalendarCheck,
   Check,
+  Footprints,
   MapPin,
   Maximize2,
   Phone,
+  Receipt,
   Share2,
   Users,
+  Wallet,
   WavesHorizontal,
 } from 'lucide-react';
 import { apartments, coverSources, getApartment, photoPaths } from '@/data/apartments';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
-import { cx, formatPrice, mapsUrl } from '@/lib/format';
+import { cx, formatDate, formatPrice, mapsUrl } from '@/lib/format';
 import { usePageMeta, useReducedMotionPreference } from '@/lib/hooks';
 import { amenityIcons } from '@/components/apartments/amenityIcons';
 import { Gallery } from '@/components/media/Gallery';
@@ -57,15 +61,40 @@ export function ApartmentPage() {
 
   const index = apartments.findIndex((item) => item.slug === apartment.slug);
   const next = apartments[(index + 1) % apartments.length];
+  const monthly = apartment.rentPeriod === 'month';
+  const money = (value: number) => formatPrice(value, apartment.currency, locale);
+
   const facts = [
     { icon: Maximize2, label: t('facts.area'), value: `${apartment.area} m²` },
     { icon: BedDouble, label: t('facts.rooms'), value: String(apartment.rooms) },
-    { icon: Users, label: t('facts.guests'), value: String(apartment.guests) },
-    { icon: BedDouble, label: t('facts.beds'), value: String(apartment.beds) },
+    {
+      icon: Users,
+      label: t(monthly ? 'facts.people' : 'facts.guests'),
+      value: t(monthly ? 'card.people' : 'card.guests', { n: apartment.guests }),
+    },
     { icon: Bath, label: t('facts.bathrooms'), value: String(apartment.bathrooms) },
     { icon: Building2, label: t('facts.floor'), value: tl(apartment.floor) },
-    { icon: WavesHorizontal, label: t('facts.beach'), value: t('facts.minutes', { n: apartment.beachMinutes }) },
-  ];
+    apartment.beachMinutes !== undefined && {
+      icon: WavesHorizontal,
+      label: t('facts.beach'),
+      value: t('facts.minutes', { n: apartment.beachMinutes }),
+    },
+    apartment.serviceCharge !== undefined && {
+      icon: Receipt,
+      label: t('facts.serviceCharge'),
+      value: t('facts.perMonth', { v: money(apartment.serviceCharge) }),
+    },
+    apartment.deposit !== undefined && {
+      icon: Wallet,
+      label: t('facts.deposit'),
+      value: money(apartment.deposit),
+    },
+    apartment.availableFrom && {
+      icon: CalendarCheck,
+      label: t('facts.availableFrom'),
+      value: formatDate(apartment.availableFrom, locale),
+    },
+  ].filter((fact) => typeof fact === 'object');
 
   async function share() {
     const url = window.location.href;
@@ -135,6 +164,7 @@ export function ApartmentPage() {
             <span className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-sea-300" />
               {apartment.street}, {apartment.city}
+              {apartment.district && ` · ${tl(apartment.district)}`}
             </span>
             <span className="flex items-center gap-2">
               <Maximize2 className="h-4 w-4 text-sea-300" />
@@ -142,7 +172,7 @@ export function ApartmentPage() {
             </span>
             <span className="flex items-center gap-2">
               <Users className="h-4 w-4 text-sea-300" />
-              {t('card.guests', { n: apartment.guests })}
+              {t(monthly ? 'card.people' : 'card.guests', { n: apartment.guests })}
             </span>
           </motion.div>
         </div>
@@ -209,6 +239,20 @@ export function ApartmentPage() {
                 })}
               </ul>
             </Reveal>
+
+            {apartment.nearby && (
+              <Reveal delay={0.22}>
+                <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.nearby')}</h3>
+                <ul className="mt-5 space-y-3">
+                  {apartment.nearby.map((item) => (
+                    <li key={item.en} className="flex items-start gap-3 text-sm text-ink-soft">
+                      <Footprints className="mt-0.5 h-4 w-4 shrink-0 text-sea-500" />
+                      {tl(item)}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
           </div>
 
           {/* Sticky booking card */}
@@ -221,14 +265,21 @@ export function ApartmentPage() {
               className="glass-panel sticky top-28 rounded-3xl p-6 shadow-card sm:p-7"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                {t('card.from')}
+                {t(monthly ? 'card.rent' : 'card.from')}
               </p>
               <p className="mt-1 flex items-baseline gap-2">
                 <span className="font-display text-4xl font-semibold text-ink">
-                  {formatPrice(apartment.pricePerNight, apartment.currency, locale)}
+                  {money(apartment.price)}
                 </span>
-                <span className="text-sm text-ink-muted">{t('card.night')}</span>
+                <span className="text-sm text-ink-muted">
+                  {t(monthly ? 'card.month' : 'card.night')}
+                </span>
               </p>
+              {apartment.serviceCharge !== undefined && (
+                <p className="mt-1.5 text-sm text-ink-muted">
+                  {t('card.serviceCharge', { v: money(apartment.serviceCharge) })}
+                </p>
+              )}
 
               {apartment.salePrice && (
                 <div className="mt-5 rounded-2xl border border-sea-100 bg-sea-50/70 p-4">
@@ -253,14 +304,14 @@ export function ApartmentPage() {
                   size="lg"
                   className="w-full"
                 >
-                  {t('detail.book')}
+                  {t(monthly ? 'detail.viewing' : 'detail.book')}
                 </ButtonLink>
               </div>
 
               <div className="mt-6 space-y-3 border-t border-sea-100 pt-5 text-sm text-ink-soft">
                 <p className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 shrink-0 text-sea-500" />
-                  {t('detail.location.text')}
+                  {t(monthly ? 'detail.location.viewing' : 'detail.location.text')}
                 </p>
                 <a
                   href={mapsUrl(apartment.coords.lat, apartment.coords.lng, `${apartment.street}, ${apartment.city}`)}

@@ -20,6 +20,15 @@ export function formatNumber(value: number, locale: Locale): string {
   return new Intl.NumberFormat(localeTag[locale]).format(value);
 }
 
+/** Renders an ISO date such as `2026-07-18` as a readable day. */
+export function formatDate(iso: string, locale: Locale): string {
+  return new Intl.DateTimeFormat(localeTag[locale], {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${iso}T00:00:00`));
+}
+
 export function cx(...classes: Array<string | false | null | undefined>): string {
   return classes.filter(Boolean).join(' ');
 }

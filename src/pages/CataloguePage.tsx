@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RotateCcw, SlidersHorizontal } from 'lucide-react';
+import type { Apartment } from '@/types';
 import { apartments } from '@/data/apartments';
 import { useI18n } from '@/i18n';
 import { cx } from '@/lib/format';
@@ -200,9 +201,13 @@ export function CataloguePage() {
   );
 }
 
-/** Compares PLN and EUR prices on a rough common scale for sorting only. */
-function normalise(apartment: { pricePerNight: number; currency: 'PLN' | 'EUR' }) {
-  return apartment.currency === 'EUR' ? apartment.pricePerNight * 4.3 : apartment.pricePerNight;
+/**
+ * Puts monthly and nightly rents, in PLN and EUR, on one rough scale so the
+ * price sort has something to compare. Display never uses this number.
+ */
+function normalise(apartment: Apartment) {
+  const perNight = apartment.rentPeriod === 'month' ? apartment.price / 30 : apartment.price;
+  return apartment.currency === 'EUR' ? perNight * 4.3 : perNight;
 }
 
 function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {

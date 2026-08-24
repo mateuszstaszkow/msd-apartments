@@ -4,6 +4,9 @@ export type Localized = Record<Locale, string>;
 
 export type OfferType = 'rent' | 'sale' | 'both';
 
+/** Long-term flats are let by the month, holiday flats by the night. */
+export type RentPeriod = 'month' | 'night';
+
 export type AmenityKey =
   | 'wifi'
   | 'parking'
@@ -20,7 +23,11 @@ export type AmenityKey =
   | 'workspace'
   | 'pool'
   | 'bbq'
-  | 'petFriendly';
+  | 'petFriendly'
+  | 'furnished'
+  | 'cellar'
+  | 'intercom'
+  | 'districtHeating';
 
 export interface ApartmentVideos {
   /** YouTube id of the cinematic presentation video. */
@@ -36,20 +43,32 @@ export interface Apartment {
   tagline: Localized;
   description: Localized;
   city: string;
+  /** Neighbourhood, e.g. "Przylesie". */
+  district?: Localized;
   region: Localized;
   country: 'PL' | 'ES';
   street: string;
-  /** Walking distance to the beach in minutes. */
-  beachMinutes: number;
+  /** Walking distance to the beach, for the holiday flats that have one. */
+  beachMinutes?: number;
+  /** "200 m to the ZUS stop" style lines taken from the listing. */
+  nearby?: Localized[];
   area: number;
   rooms: number;
+  /** How many people the flat is meant for. */
   guests: number;
   beds: number;
   bathrooms: number;
   floor: Localized;
   offer: OfferType;
-  /** Nightly rate in PLN (Koszalin) or EUR (Costa del Sol). */
-  pricePerNight: number;
+  rentPeriod: RentPeriod;
+  /** Rent, in the unit given by `rentPeriod`. */
+  price: number;
+  /** Monthly charge paid on to the housing co-op, on top of the rent. */
+  serviceCharge?: number;
+  /** Refundable deposit. */
+  deposit?: number;
+  /** ISO date from which the flat is free. */
+  availableFrom?: string;
   currency: 'PLN' | 'EUR';
   /** Asking price when the apartment is also for sale. */
   salePrice?: number;

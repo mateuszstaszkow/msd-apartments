@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, BedDouble, MapPin, Maximize2, CirclePlay, Users, WavesHorizontal } from 'lucide-react';
+import {
+  ArrowUpRight,
+  BedDouble,
+  Building2,
+  MapPin,
+  Maximize2,
+  CirclePlay,
+  Users,
+  WavesHorizontal,
+} from 'lucide-react';
 import type { Apartment } from '@/types';
 import { coverSources } from '@/data/apartments';
 import { useI18n } from '@/i18n';
@@ -17,6 +26,7 @@ interface ApartmentCardProps {
 export function ApartmentCard({ apartment, index = 0, size = 'default' }: ApartmentCardProps) {
   const { t, tl, locale } = useI18n();
   const filmCount = Object.values(apartment.videos).filter(Boolean).length;
+  const monthly = apartment.rentPeriod === 'month';
 
   return (
     <motion.article
@@ -75,25 +85,48 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
 
           <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-ink-soft">
             <Fact icon={<Maximize2 className="h-4 w-4" />} value={`${apartment.area} m²`} />
-            <Fact icon={<Users className="h-4 w-4" />} value={t('card.guests', { n: apartment.guests })} />
-            <Fact icon={<BedDouble className="h-4 w-4" />} value={t('card.rooms', { n: apartment.rooms })} />
             <Fact
-              icon={<WavesHorizontal className="h-4 w-4" />}
-              value={t('card.beach', { n: apartment.beachMinutes })}
-              wide
+              icon={<Users className="h-4 w-4" />}
+              value={t(monthly ? 'card.people' : 'card.guests', { n: apartment.guests })}
             />
+            <Fact
+              icon={<BedDouble className="h-4 w-4" />}
+              value={t(apartment.rooms === 1 ? 'card.rooms.one' : 'card.rooms', { n: apartment.rooms })}
+            />
+            {/* The beach only sells the holiday flats; for a long let the floor matters more. */}
+            {apartment.beachMinutes === undefined ? (
+              <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} wide />
+            ) : (
+              <Fact
+                icon={<WavesHorizontal className="h-4 w-4" />}
+                value={t('card.beach', { n: apartment.beachMinutes })}
+                wide
+              />
+            )}
           </dl>
 
           <div className="mt-6 flex items-end justify-between border-t border-sea-100 pt-5">
             <p className="text-ink">
               <span className="text-xs uppercase tracking-[0.14em] text-ink-muted">
-                {t('card.from')}
+                {t(monthly ? 'card.rent' : 'card.from')}
               </span>
               <br />
               <span className="font-display text-xl font-semibold">
-                {formatPrice(apartment.pricePerNight, apartment.currency, locale)}
+                {formatPrice(apartment.price, apartment.currency, locale)}
               </span>
-              <span className="ml-1 text-sm text-ink-muted">{t('card.night')}</span>
+              <span className="ml-1 text-sm text-ink-muted">
+                {t(monthly ? 'card.month' : 'card.night')}
+              </span>
+              {apartment.serviceCharge !== undefined && (
+                <>
+                  <br />
+                  <span className="text-xs text-ink-muted">
+                    {t('card.serviceCharge', {
+                      v: formatPrice(apartment.serviceCharge, apartment.currency, locale),
+                    })}
+                  </span>
+                </>
+              )}
             </p>
             <span className="link-underline text-sm font-semibold text-sea-700">
               {t('card.explore')}
