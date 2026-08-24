@@ -1,36 +1,35 @@
 /**
  * Single source of truth for company details.
- *
- * PLACEHOLDER VALUES: phone, email, office address, NIP and the booking links below
- * are stand-ins. Replace them with the real MSD Apartments data before going live.
  */
 export const site = {
   name: 'MSD Apartments',
   foundedYear: 2019,
   phone: {
-    display: '+48 500 100 200',
-    href: 'tel:+48500100200',
-    whatsapp: 'https://wa.me/48500100200',
+    display: '+48 506 356 937',
+    href: 'tel:+48506356937',
+    whatsapp: 'https://wa.me/48506356937',
+    /** Who picks up — shown next to the number on the contact page. */
+    contact: 'Mirosław',
   },
   email: {
-    display: 'kontakt@msdapartments.pl',
-    href: 'mailto:kontakt@msdapartments.pl',
+    display: 'msdapartments@gmail.com',
+    href: 'mailto:msdapartments@gmail.com',
   },
   office: {
-    street: 'ul. Zwycięstwa 24',
-    city: '75-037 Koszalin',
+    street: 'ul. Fińska 50',
+    city: '75-430 Koszalin',
     country: 'Poland',
-    mapsUrl: 'https://maps.google.com/?q=Koszalin,+Poland',
+    mapsUrl: 'https://maps.google.com/?q=Fi%C5%84ska+50,+75-430+Koszalin,+Poland',
+    coords: { lat: 54.2216, lng: 16.1737 },
   },
+  /** `null` means closed; the UI translates it. */
   hours: {
-    weekdays: '09:00 – 19:00',
-    saturday: '10:00 – 16:00',
-    sunday: 'On request',
+    weekdays: '08:00 – 16:00',
+    saturday: null,
+    sunday: null,
   },
   socials: {
     youtube: 'https://www.youtube.com/@msdapartments6010',
-    instagram: 'https://www.instagram.com/',
-    facebook: 'https://www.facebook.com/',
   },
   /** Response promise advertised on the contact page. */
   responseTimeHours: 2,

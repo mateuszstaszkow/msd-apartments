@@ -4,7 +4,7 @@ import { apartments } from '@/data/apartments';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { asset } from '@/lib/asset';
-import { FacebookIcon, InstagramIcon, YoutubeIcon } from '@/components/ui/BrandIcons';
+import { YoutubeIcon } from '@/components/ui/BrandIcons';
 import { Reveal } from '@/components/ui/Reveal';
 
 export function Footer() {
@@ -34,12 +34,6 @@ export function Footer() {
             <div className="mt-6 flex gap-3">
               <Social href={site.socials.youtube} label="YouTube">
                 <YoutubeIcon className="h-5 w-5" />
-              </Social>
-              <Social href={site.socials.instagram} label="Instagram">
-                <InstagramIcon className="h-[1.15rem] w-[1.15rem]" />
-              </Social>
-              <Social href={site.socials.facebook} label="Facebook">
-                <FacebookIcon className="h-[1.15rem] w-[1.15rem]" />
               </Social>
             </div>
           </Reveal>

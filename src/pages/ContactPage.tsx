@@ -11,6 +11,13 @@ import { ButtonAnchor } from '@/components/ui/Button';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
 
+/** OpenStreetMap embed centred on the office, with a marker on the door. */
+const officeMapUrl = (() => {
+  const { lat, lng } = site.office.coords;
+  const bbox = [lng - 0.006, lat - 0.003, lng + 0.006, lat + 0.003].join(',');
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${encodeURIComponent(`${lat},${lng}`)}`;
+})();
+
 export function ContactPage() {
   const { t } = useI18n();
   const [params] = useSearchParams();
@@ -106,7 +113,9 @@ export function ContactPage() {
                 <p className="mt-2 font-display text-3xl font-semibold text-white sm:text-[2.6rem] sm:leading-tight">
                   {site.phone.display}
                 </p>
-                <p className="mt-3 text-sm text-sea-100/75">{t('contact.phone.note')}</p>
+                <p className="mt-3 text-sm text-sea-100/75">
+                  {site.phone.contact} · {t('contact.phone.note')}
+                </p>
               </div>
             </motion.a>
           </Reveal>
@@ -271,7 +280,9 @@ export function ContactPage() {
                     className="flex items-center justify-between border-b border-sea-100 pb-3 last:border-0"
                   >
                     <dt className="text-ink-soft">{row.label}</dt>
-                    <dd className="font-semibold text-ink">{row.value}</dd>
+                    <dd className={row.value ? 'font-semibold text-ink' : 'text-ink-muted'}>
+                      {row.value ?? t('contact.hours.closed')}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -286,8 +297,8 @@ export function ContactPage() {
 
               <div className="mt-8 overflow-hidden rounded-2xl border border-sea-100">
                 <iframe
-                  title="MSD Apartments office location"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=16.13%2C54.16%2C16.23%2C54.22&layer=mapnik&marker=54.1943%2C16.1722"
+                  title={`${site.name} — ${site.office.street}, ${site.office.city}`}
+                  src={officeMapUrl}
                   loading="lazy"
                   className="h-56 w-full border-0"
                 />
