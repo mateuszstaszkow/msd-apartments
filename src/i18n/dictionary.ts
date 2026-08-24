@@ -89,6 +89,7 @@ export const dictionary = {
     'card.rooms.one': '1 room',
     'card.area': '{n} m²',
     'card.beach': '{n} min to the beach',
+    'card.beach.car': '{n} min to the beach by car',
     'card.video': 'Video tour',
     'card.explore': 'Explore',
 
@@ -131,6 +132,7 @@ export const dictionary = {
     'facts.floor': 'Floor',
     'facts.beach': 'To the beach',
     'facts.minutes': '{n} min',
+    'facts.minutes.car': '{n} min by car',
     'facts.people': 'Meant for',
     'facts.serviceCharge': 'Service charge',
     'facts.deposit': 'Deposit',
@@ -141,10 +143,10 @@ export const dictionary = {
     'locations.title': 'Two seas, one standard',
     'locations.baltic.title': 'Koszalin, Baltic Sea',
     'locations.baltic.text':
-      'Seven apartments in the greenest part of the city, minutes from Mielno, Chłopy and Sarbinowo beaches, the Chełmska Hill and the amphitheatre.',
+      'Seven apartments in the greenest part of the city, a short drive from the Baltic beaches of Mielno, Chłopy and Sarbinowo, the Chełmska Hill and the amphitheatre.',
     'locations.costa.title': 'Costa del Sol, Spain',
     'locations.costa.text':
-      'One apartment on the Spanish coast, a short walk from the promenade and twenty minutes from Málaga airport. 320 sunny days a year.',
+      'A penthouse with a rooftop jacuzzi and a sea view in the Hacienda el Sueño resort at Las Lagunas de Mijas, halfway between Málaga and Marbella. Ten minutes by car to the beach, 320 sunny days a year.',
     'locations.apartments': '{n} apartments',
     'locations.apartment': '{n} apartment',
 
@@ -221,7 +223,7 @@ export const dictionary = {
 
     'amenity.wifi': 'Fast Wi-Fi',
     'amenity.parking': 'Parking',
-    'amenity.seaView': 'View',
+    'amenity.seaView': 'Sea view',
     'amenity.balcony': 'Balcony',
     'amenity.terrace': 'Terrace',
     'amenity.garden': 'Garden',
@@ -239,6 +241,9 @@ export const dictionary = {
     'amenity.cellar': 'Cellar',
     'amenity.intercom': 'Video intercom',
     'amenity.districtHeating': 'District heating',
+    'amenity.jacuzzi': 'Private jacuzzi',
+    'amenity.gym': 'Gym',
+    'amenity.sauna': 'Sauna',
 
     'notFound.title': 'This page drifted out to sea',
     'notFound.text': 'The link you followed does not exist. Let us take you back to dry land.',
@@ -333,6 +338,7 @@ export const dictionary = {
     'card.rooms.one': '1 pokój',
     'card.area': '{n} m²',
     'card.beach': '{n} min do plaży',
+    'card.beach.car': '{n} min do plaży autem',
     'card.video': 'Wideo',
     'card.explore': 'Zobacz',
 
@@ -375,6 +381,7 @@ export const dictionary = {
     'facts.floor': 'Piętro',
     'facts.beach': 'Do plaży',
     'facts.minutes': '{n} min',
+    'facts.minutes.car': '{n} min autem',
     'facts.people': 'Przeznaczone dla',
     'facts.serviceCharge': 'Czynsz administracyjny',
     'facts.deposit': 'Kaucja',
@@ -385,10 +392,10 @@ export const dictionary = {
     'locations.title': 'Dwa morza, jeden standard',
     'locations.baltic.title': 'Koszalin, Bałtyk',
     'locations.baltic.text':
-      'Siedem apartamentów w najbardziej zielonej części miasta, kilka minut od plaż w Mielnie, Chłopach i Sarbinowie, Góry Chełmskiej i amfiteatru.',
+      'Siedem apartamentów w najbardziej zielonej części miasta, krótki dojazd do bałtyckich plaż w Mielnie, Chłopach i Sarbinowie, Góry Chełmskiej i amfiteatru.',
     'locations.costa.title': 'Costa del Sol, Hiszpania',
     'locations.costa.text':
-      'Jeden apartament na hiszpańskim wybrzeżu, spacer od promenady i dwadzieścia minut od lotniska w Maladze. 320 słonecznych dni w roku.',
+      'Penthouse z jacuzzi na dachu i widokiem na morze w resorcie Hacienda el Sueño w Las Lagunas de Mijas, w połowie drogi między Malagą a Marbellą. Dziesięć minut autem do plaży, 320 słonecznych dni w roku.',
     'locations.apartments': 'Apartamenty: {n}',
     'locations.apartment': 'Apartament: {n}',
 
@@ -465,7 +472,7 @@ export const dictionary = {
 
     'amenity.wifi': 'Szybkie Wi-Fi',
     'amenity.parking': 'Parking',
-    'amenity.seaView': 'Widok',
+    'amenity.seaView': 'Widok na morze',
     'amenity.balcony': 'Balkon',
     'amenity.terrace': 'Taras',
     'amenity.garden': 'Ogród',
@@ -483,6 +490,9 @@ export const dictionary = {
     'amenity.cellar': 'Piwnica',
     'amenity.intercom': 'Wideodomofon',
     'amenity.districtHeating': 'Ogrzewanie miejskie',
+    'amenity.jacuzzi': 'Prywatne jacuzzi',
+    'amenity.gym': 'Siłownia',
+    'amenity.sauna': 'Sauna',
 
     'notFound.title': 'Ta strona odpłynęła w morze',
     'notFound.text': 'Link, w który kliknąłeś, nie istnieje. Zabierzemy Cię z powrotem na ląd.',

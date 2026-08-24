@@ -27,7 +27,10 @@ export type AmenityKey =
   | 'furnished'
   | 'cellar'
   | 'intercom'
-  | 'districtHeating';
+  | 'districtHeating'
+  | 'jacuzzi'
+  | 'gym'
+  | 'sauna';
 
 export interface ApartmentVideos {
   /** YouTube id of the cinematic presentation video. */
@@ -48,8 +51,8 @@ export interface Apartment {
   region: Localized;
   country: 'PL' | 'ES';
   street: string;
-  /** Walking distance to the beach, for the holiday flats that have one. */
-  beachMinutes?: number;
+  /** Time to the nearest beach. Koszalin is a drive away; a resort may be a walk. */
+  beach?: { minutes: number; mode: 'walk' | 'car' };
   /** "200 m to the ZUS stop" style lines taken from the listing. */
   nearby?: Localized[];
   area: number;

@@ -74,10 +74,12 @@ export function ApartmentPage() {
     },
     { icon: Bath, label: t('facts.bathrooms'), value: String(apartment.bathrooms) },
     { icon: Building2, label: t('facts.floor'), value: tl(apartment.floor) },
-    apartment.beachMinutes !== undefined && {
+    apartment.beach && {
       icon: WavesHorizontal,
       label: t('facts.beach'),
-      value: t('facts.minutes', { n: apartment.beachMinutes }),
+      value: t(apartment.beach.mode === 'car' ? 'facts.minutes.car' : 'facts.minutes', {
+        n: apartment.beach.minutes,
+      }),
     },
     apartment.serviceCharge !== undefined && {
       icon: Receipt,

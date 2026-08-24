@@ -6,6 +6,8 @@ import {
   Car,
   ChefHat,
   Dog,
+  Droplets,
+  Dumbbell,
   Eye,
   Flame,
   Laptop,
@@ -14,6 +16,7 @@ import {
   Sprout,
   Sun,
   Thermometer,
+  ThermometerSun,
   Tv,
   WavesLadder,
   Wifi,
@@ -44,6 +47,9 @@ export const amenityIcons: Record<AmenityKey, ComponentType<{ className?: string
   cellar: Boxes,
   intercom: ShieldCheck,
   districtHeating: Thermometer,
+  jacuzzi: Droplets,
+  gym: Dumbbell,
+  sauna: ThermometerSun,
 };
 
 export const bathIcon = Bath;

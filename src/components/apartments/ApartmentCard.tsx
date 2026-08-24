@@ -93,13 +93,13 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
               icon={<BedDouble className="h-4 w-4" />}
               value={t(apartment.rooms === 1 ? 'card.rooms.one' : 'card.rooms', { n: apartment.rooms })}
             />
-            {/* The beach only sells the holiday flats; for a long let the floor matters more. */}
-            {apartment.beachMinutes === undefined ? (
-              <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} wide />
-            ) : (
+            <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} />
+            {apartment.beach && (
               <Fact
                 icon={<WavesHorizontal className="h-4 w-4" />}
-                value={t('card.beach', { n: apartment.beachMinutes })}
+                value={t(apartment.beach.mode === 'car' ? 'card.beach.car' : 'card.beach', {
+                  n: apartment.beach.minutes,
+                })}
                 wide
               />
             )}
