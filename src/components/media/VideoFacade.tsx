@@ -17,7 +17,7 @@ interface VideoFacadeProps {
 
 /**
  * Lightweight YouTube embed: shows the still frame until clicked, then swaps in
- * the real player. Keeps the catalogue fast even with 9 films on the site.
+ * the real player. Keeps the catalogue fast even with every film on the site.
  */
 export function VideoFacade({ videoId, title, label, className, eager }: VideoFacadeProps) {
   const [active, setActive] = useState(false);

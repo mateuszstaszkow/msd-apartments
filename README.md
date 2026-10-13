@@ -60,8 +60,11 @@ film, the rest show a branded placeholder.
 
 ### Films
 
-The nine videos from [youtube.com/@msdapartments6010](https://www.youtube.com/@msdapartments6010)
-are wired up by id. Each apartment can have a `presentation` and a `pov` film:
+The nine videos from [youtube.com/@msdapartments6010](https://www.youtube.com/@msdapartments6010),
+Fala's film from [youtube.com/@miroslaw368](https://www.youtube.com/@miroslaw368)
+and Marina's Short from [youtube.com/@haciendaelsueno](https://www.youtube.com/@haciendaelsueno)
+are wired up by id. Each apartment can have a `presentation` and a `pov` film;
+`vertical: true` marks Shorts, which stay out of the landing-page hero:
 
 | Apartment | Presentation  | POV walkthrough |
 | --------- | ------------- | --------------- |
@@ -70,7 +73,9 @@ are wired up by id. Each apartment can have a `presentation` and a `pov` film:
 | Łódź      | `sBWYsI9pejg` | `XO3isQPx3Vo`   |
 | Promenada | `VETQRa2nhbI` | `lhJNXaWSExc`   |
 | Mewa      | —             | `6-MAlsbBHlE`   |
-| Fala, Bryza, Marina | — | — |
+| Fala      | `Yax3pRo_-mw` | —               |
+| Marina    | `TKR1yUgcHGI` (Short) | —       |
+| Bryza     | —             | —               |
 
 Missing films show a "being edited" card instead of an empty space. Add new
 ones by pasting the id into the `videos` object — the film reel on the landing

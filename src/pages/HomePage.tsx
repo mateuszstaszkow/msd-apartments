@@ -32,8 +32,15 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SmartImage } from '@/components/ui/SmartImage';
 
 const heroFilms = apartments
+  .filter((apartment) => !apartment.videos.vertical)
   .map((apartment) => apartment.videos.presentation)
   .filter((id): id is string => Boolean(id));
+
+const reel = apartments.flatMap((apartment) =>
+  (['presentation', 'pov'] as const)
+    .filter((kind) => apartment.videos[kind])
+    .map((kind) => ({ apartment, kind, id: apartment.videos[kind]! })),
+);
 
 export function HomePage() {
   const { t, tl } = useI18n();
@@ -294,19 +301,13 @@ export function HomePage() {
         <div className="container-page relative">
           <SectionHeading
             eyebrow={t('films.eyebrow')}
-            title={t('films.title')}
+            title={t('films.title', { n: reel.length })}
             subtitle={t('detail.videos.subtitle')}
             tone="light"
           />
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {apartments
-              .flatMap((apartment) =>
-                (['presentation', 'pov'] as const)
-                  .filter((kind) => apartment.videos[kind])
-                  .map((kind) => ({ apartment, kind, id: apartment.videos[kind]! })),
-              )
-              .map(({ apartment, kind, id }, index) => (
+            {reel.map(({ apartment, kind, id }, index) => (
                 <motion.button
                   key={id}
                   type="button"

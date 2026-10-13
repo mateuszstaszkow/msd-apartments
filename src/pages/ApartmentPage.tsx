@@ -10,6 +10,7 @@ import {
   CalendarCheck,
   Check,
   Footprints,
+  KeyRound,
   MapPin,
   Maximize2,
   Phone,
@@ -73,7 +74,7 @@ export function ApartmentPage() {
       value: t(monthly ? 'card.people' : 'card.guests', { n: apartment.guests }),
     },
     { icon: Bath, label: t('facts.bathrooms'), value: String(apartment.bathrooms) },
-    { icon: Building2, label: t('facts.floor'), value: tl(apartment.floor) },
+    apartment.floor && { icon: Building2, label: t('facts.floor'), value: tl(apartment.floor) },
     apartment.beach && {
       icon: WavesHorizontal,
       label: t('facts.beach'),
@@ -283,6 +284,16 @@ export function ApartmentPage() {
                 </p>
               )}
 
+              {apartment.rented && (
+                <div className="mt-5 rounded-2xl border border-sea-200 bg-white/80 p-4">
+                  <p className="flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sea-700">
+                    <KeyRound className="h-3.5 w-3.5" />
+                    {t('detail.rented')}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{t('detail.rented.text')}</p>
+                </div>
+              )}
+
               {apartment.salePrice && (
                 <div className="mt-5 rounded-2xl border border-sea-100 bg-sea-50/70 p-4">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sea-700">
@@ -306,7 +317,7 @@ export function ApartmentPage() {
                   size="lg"
                   className="w-full"
                 >
-                  {t(monthly ? 'detail.viewing' : 'detail.book')}
+                  {t(apartment.rented ? 'detail.waitlist' : monthly ? 'detail.viewing' : 'detail.book')}
                 </ButtonLink>
               </div>
 

@@ -4,11 +4,12 @@ import { thumbnailSources } from '@/lib/youtube';
 
 /**
  * Every apartment MSD manages. Videos are the real YouTube ids from
- * youtube.com/@msdapartments6010 — apartments still waiting for a shoot simply
- * leave the field out and the UI adapts.
+ * youtube.com/@msdapartments6010 (Fala's film is on youtube.com/@miroslaw368) —
+ * apartments still waiting for a shoot simply leave the field out and the UI adapts.
  *
- * Mewa, Łódź and Promenada carry the figures from their live listings. The
- * other five still hold PLACEHOLDER sizes, rents and descriptions.
+ * Żagiel, Fala, Mewa, Łódź and Promenada carry the details from their live
+ * listings (Fala's rent is still a placeholder). Latarnia, Bryza and Marina
+ * still hold PLACEHOLDER sizes, rents and descriptions.
  *
  * Photos live in /public/apartments/<slug>/01.jpg … 08.jpg (see public/apartments/README.md).
  */
@@ -17,51 +18,67 @@ export const apartments: Apartment[] = [
     slug: 'zagiel',
     name: 'Żagiel',
     tagline: {
-      en: 'Panoramic apartment with a sail-wide view',
-      pl: 'Apartament z widokiem szerokim jak żagiel',
+      en: 'Apartment with a view by the university',
+      pl: 'Apartament z widokiem przy Politechnice',
     },
     description: {
-      en: 'Our flagship. Floor-to-ceiling windows open onto the green skyline of Koszalin and the Chełmska Hill, and the light keeps changing all day long. A calm, contemporary interior in white and light blue, designed for couples and small families who want to come back to something beautiful after a day at the beach.',
-      pl: 'Nasz okręt flagowy. Okna od podłogi do sufitu otwierają się na zieloną panoramę Koszalina i Górę Chełmską, a światło zmienia się tu przez cały dzień. Spokojne, nowoczesne wnętrze w bieli i błękicie, zaprojektowane dla par i małych rodzin, które po dniu na plaży chcą wracać do czegoś pięknego.',
+      en: 'A comfortable 32 m² apartment for one or two people. The living room holds a double bed with a pocket-spring mattress, a fold-out sofa, a beech desk and the door to the balcony. The fitted kitchen has a beech worktop, a tall Amica fridge, an oven and a built-in dishwasher; there is also a washing machine, a vacuum cleaner and a 50" TV. The bathroom has an acrylic bathtub with a folding glass screen and a wall-hung toilet. Fully furnished and ready to move into, with a cellar that belongs to the flat. Let on an occasional-lease contract (najem okazjonalny), without commission, directly with the owner.',
+      pl: 'Komfortowy apartament o powierzchni 32 m² dla jednej lub dwóch osób. W salonie stoi dwuosobowe łóżko z materacem kieszeniowym, składany tapczan i bukowe biurko, a z salonu wychodzi się na balkon. Kuchnia w zabudowie ma bukowy blat, wysoką lodówkę Amica, piekarnik i zmywarkę w zabudowie; do tego pralka, odkurzacz i telewizor 50". W łazience jest akrylowa wanna ze składanym szklanym parawanem i podwieszana toaleta. Mieszkanie jest w pełni umeblowane i gotowe do wprowadzenia, przynależy do niego piwnica. Umowa najmu okazjonalnego, oferta bez prowizji, bezpośrednio od właściciela.',
     },
     city: 'Koszalin',
+    district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
     street: 'ul. Fałata',
     beach: { minutes: 18, mode: 'car' },
-    area: 52,
-    rooms: 2,
-    guests: 4,
-    beds: 3,
+    nearby: [
+      { en: 'About 200 m to the bus stops', pl: 'Ok. 200 m do przystanków autobusowych' },
+      {
+        en: 'Koszalin University of Technology, the stadium, the sports hall and the water park nearby',
+        pl: 'Blisko Politechniki, Stadionu, Hali Widowiskowo-Sportowej i Parku Wodnego',
+      },
+      {
+        en: 'Emka shopping centre, chemists, a post office and restaurants around the corner',
+        pl: 'Centrum handlowe Emka, apteki, poczta i restauracje w pobliżu',
+      },
+    ],
+    area: 32,
+    rooms: 1,
+    guests: 2,
+    beds: 2,
     bathrooms: 1,
-    floor: { en: '6th floor with lift', pl: '6. piętro z windą' },
-    offer: 'both',
+    offer: 'rent',
     rentPeriod: 'month',
-    price: 2400,
-    serviceCharge: 700,
-    deposit: 4800,
+    price: 1890,
+    serviceCharge: 510,
+    deposit: 3000,
     currency: 'PLN',
-    salePrice: 549000,
     amenities: [
-      'wifi',
-      'parking',
-      'seaView',
+      'furnished',
       'balcony',
       'kitchen',
       'dishwasher',
       'washingMachine',
       'tv',
-      'elevator',
       'workspace',
+      'cellar',
+      'parking',
     ],
     highlights: [
-      { en: 'Panoramic balcony facing the sunset', pl: 'Panoramiczny balkon od strony zachodu słońca' },
-      { en: 'Fully equipped open kitchen', pl: 'W pełni wyposażona kuchnia otwarta' },
-      { en: 'Fast Wi-Fi and a real desk', pl: 'Szybkie Wi-Fi i prawdziwe biurko' },
+      { en: 'Balcony off the living room', pl: 'Balkon z wyjściem z salonu' },
+      {
+        en: 'Bathtub with a glass screen and a wall-hung toilet',
+        pl: 'Wanna ze szklanym parawanem i podwieszana toaleta',
+      },
+      {
+        en: 'Electricity billed every other month by usage',
+        pl: 'Prąd rozliczany co drugi miesiąc według zużycia',
+      },
     ],
     videos: { presentation: 'JiDVGROMxqQ', pov: 'lWZSBCnC00s' },
     coords: { lat: 54.2014, lng: 16.1976 },
     featured: true,
+    rented: true,
     photosPending: true,
   },
   {
@@ -112,6 +129,7 @@ export const apartments: Apartment[] = [
     videos: { presentation: 'mC3kKnE5nMQ', pov: 'S_HH_PhOepY' },
     coords: { lat: 54.2047, lng: 16.1866 },
     featured: true,
+    rented: true,
     photosPending: true,
   },
   {
@@ -147,7 +165,6 @@ export const apartments: Apartment[] = [
     price: 1600,
     serviceCharge: 400,
     deposit: 3200,
-    availableFrom: '2026-06-08',
     currency: 'PLN',
     amenities: [
       'furnished',
@@ -174,6 +191,7 @@ export const apartments: Apartment[] = [
     ],
     videos: { presentation: 'sBWYsI9pejg', pov: 'XO3isQPx3Vo' },
     coords: { lat: 54.1984, lng: 16.19 },
+    rented: true,
     photosPending: true,
   },
   {
@@ -218,7 +236,6 @@ export const apartments: Apartment[] = [
     price: 1700,
     serviceCharge: 400,
     deposit: 3400,
-    availableFrom: '2026-06-08',
     currency: 'PLN',
     amenities: [
       'wifi',
@@ -243,6 +260,7 @@ export const apartments: Apartment[] = [
     ],
     videos: { presentation: 'VETQRa2nhbI', pov: 'lhJNXaWSExc' },
     coords: { lat: 54.2024, lng: 16.1901 },
+    rented: true,
     photosPending: true,
   },
   {
@@ -287,7 +305,6 @@ export const apartments: Apartment[] = [
     price: 1900,
     serviceCharge: 600,
     deposit: 3800,
-    availableFrom: '2026-07-18',
     currency: 'PLN',
     amenities: [
       'furnished',
@@ -311,44 +328,61 @@ export const apartments: Apartment[] = [
     videos: { pov: '6-MAlsbBHlE' },
     coords: { lat: 54.2047, lng: 16.1866 },
     featured: true,
+    rented: true,
     photosPending: true,
   },
   {
     slug: 'fala',
     name: 'Fala',
     tagline: {
-      en: 'Soft, wave-like interior for slow weekends',
-      pl: 'Miękkie, faliste wnętrze na powolne weekendy',
+      en: 'Freshly renovated, high-standard apartment',
+      pl: 'Świeżo wyremontowany apartament w wysokim standardzie',
     },
     description: {
-      en: 'Rounded shapes, sand-coloured wood and a shower big enough to wash the whole beach off. Fala is our most relaxed apartment — made for people who plan nothing and enjoy everything.',
-      pl: 'Zaokrąglone kształty, piaskowe drewno i prysznic, w którym zmyjesz z siebie całą plażę. Fala to nasz najbardziej wyluzowany apartament — dla tych, którzy nic nie planują i cieszą się wszystkim.',
+      en: 'A freshly renovated 32 m² apartment finished to a high standard, for one or two people. Everything is new: the furniture, a 55" TV with a subwoofer, a tall built-in fridge, a Wi-Fi oven and a dishwasher. The living room holds a double bed with a pocket-spring mattress, a fold-out sofa and a beech desk; the bathroom has an acrylic bathtub with a folding glass screen and a wall-hung Grohe toilet. Ready to move into, with a cellar that belongs to the flat. Let without commission, directly with the owner.',
+      pl: 'Świeżo wyremontowany w wysokim standardzie apartament o powierzchni 32 m² dla jednej lub dwóch osób. Wszystko jest nowe: meble, telewizor 55" z subwooferem, wysoka lodówka w zabudowie, piekarnik z Wi-Fi i zmywarka. W salonie stoi dwuosobowe łóżko z materacem kieszeniowym, składany tapczan i bukowe biurko, a w łazience jest akrylowa wanna ze składanym szklanym parawanem i podwieszana toaleta Grohe. Mieszkanie jest gotowe do wprowadzenia, przynależy do niego piwnica. Oferta bez prowizji, bezpośrednio od właściciela.',
     },
     city: 'Koszalin',
+    district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'Koszalin',
+    street: 'ul. Lelewela',
     beach: { minutes: 16, mode: 'car' },
-    area: 41,
-    rooms: 2,
-    guests: 4,
+    nearby: [
+      { en: 'Under 200 m to the bus stop', pl: 'Niecałe 200 m do przystanku autobusowego' },
+      {
+        en: 'Koszalin University of Technology, the sports hall, the water park and the forest nearby',
+        pl: 'Blisko Politechniki, Hali Widowiskowo-Sportowej, Parku Wodnego i lasu',
+      },
+      {
+        en: 'Shops, chemists, a post office and restaurants around the corner',
+        pl: 'Sklepy, apteki, poczta i restauracje w pobliżu',
+      },
+    ],
+    area: 32,
+    rooms: 1,
+    guests: 2,
     beds: 2,
     bathrooms: 1,
-    floor: { en: '4th floor with lift', pl: '4. piętro z windą' },
     offer: 'rent',
     rentPeriod: 'month',
+    // TODO: PLACEHOLDER rent, service charge and deposit — the listing does not give them.
     price: 2000,
     serviceCharge: 550,
     deposit: 4000,
     currency: 'PLN',
-    amenities: ['wifi', 'parking', 'balcony', 'kitchen', 'dishwasher', 'washingMachine', 'tv', 'elevator'],
+    amenities: ['furnished', 'kitchen', 'dishwasher', 'tv', 'workspace', 'cellar', 'parking'],
     highlights: [
-      { en: 'Walk-in rain shower', pl: 'Duży prysznic typu walk-in' },
-      { en: 'Blackout curtains in the bedroom', pl: 'Zasłony zaciemniające w sypialni' },
-      { en: 'Bicycle storage in the building', pl: 'Rowerownia w budynku' },
+      { en: 'Everything new after a fresh renovation', pl: 'Wszystko nowe po świeżym remoncie' },
+      { en: '55" TV with a subwoofer', pl: 'Telewizor 55" z subwooferem' },
+      {
+        en: 'Bathtub with a glass screen and a wall-hung Grohe toilet',
+        pl: 'Wanna ze szklanym parawanem i podwieszana toaleta Grohe',
+      },
     ],
-    videos: {},
-    coords: { lat: 54.1943, lng: 16.1722 },
+    videos: { presentation: 'Yax3pRo_-mw' },
+    coords: { lat: 54.2092, lng: 16.1997 },
+    rented: true,
     photosPending: true,
   },
   {
@@ -400,6 +434,7 @@ export const apartments: Apartment[] = [
     ],
     videos: {},
     coords: { lat: 54.1965, lng: 16.1668 },
+    rented: true,
     photosPending: true,
   },
   {
@@ -468,10 +503,11 @@ export const apartments: Apartment[] = [
         pl: 'Podgrzewany basen, laguna, siłownia i sauna na terenie resortu',
       },
     ],
-    videos: {},
+    // Short from youtube.com/@haciendaelsueno; the photos are stills from it.
+    videos: { presentation: 'TKR1yUgcHGI', vertical: true },
     coords: { lat: 36.5242, lng: -4.6503 },
     featured: true,
-    photosPending: true,
+    rented: true,
   },
 ];
 

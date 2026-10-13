@@ -25,7 +25,7 @@ interface ApartmentCardProps {
 
 export function ApartmentCard({ apartment, index = 0, size = 'default' }: ApartmentCardProps) {
   const { t, tl, locale } = useI18n();
-  const filmCount = Object.values(apartment.videos).filter(Boolean).length;
+  const filmCount = [apartment.videos.presentation, apartment.videos.pov].filter(Boolean).length;
   const monthly = apartment.rentPeriod === 'month';
 
   return (
@@ -56,6 +56,11 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
             <span className="rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md">
               {t(`catalogue.offer.${apartment.offer}` as 'catalogue.offer.rent')}
             </span>
+            {apartment.rented && (
+              <span className="rounded-full bg-white px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sea-700 shadow-soft">
+                {t('card.rented')}
+              </span>
+            )}
             {filmCount > 0 && (
               <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md">
                 <CirclePlay className="h-3.5 w-3.5" />
@@ -93,7 +98,7 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
               icon={<BedDouble className="h-4 w-4" />}
               value={t(apartment.rooms === 1 ? 'card.rooms.one' : 'card.rooms', { n: apartment.rooms })}
             />
-            <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} />
+            {apartment.floor && <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} />}
             {apartment.beach && (
               <Fact
                 icon={<WavesHorizontal className="h-4 w-4" />}

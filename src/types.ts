@@ -37,6 +37,8 @@ export interface ApartmentVideos {
   presentation?: string;
   /** YouTube id of the first-person walkthrough. */
   pov?: string;
+  /** The films are 9:16 Shorts, so they cannot fill the 16:9 hero background. */
+  vertical?: boolean;
 }
 
 export interface Apartment {
@@ -61,7 +63,7 @@ export interface Apartment {
   guests: number;
   beds: number;
   bathrooms: number;
-  floor: Localized;
+  floor?: Localized;
   offer: OfferType;
   rentPeriod: RentPeriod;
   /** Rent, in the unit given by `rentPeriod`. */
@@ -72,6 +74,8 @@ export interface Apartment {
   deposit?: number;
   /** ISO date from which the flat is free. */
   availableFrom?: string;
+  /** A tenant lives there now; enquiries are about the next opening. */
+  rented?: boolean;
   currency: 'PLN' | 'EUR';
   /** Asking price when the apartment is also for sale. */
   salePrice?: number;
