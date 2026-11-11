@@ -26,6 +26,9 @@ create trigger apartment_overrides_touch
 
 alter table public.apartment_overrides enable row level security;
 
+grant select on public.apartment_overrides to anon, authenticated;
+grant insert, update on public.apartment_overrides to authenticated;
+
 -- Everyone (the public site) may read.
 drop policy if exists "public read" on public.apartment_overrides;
 create policy "public read" on public.apartment_overrides

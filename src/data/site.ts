@@ -42,8 +42,9 @@ export const site = {
    * security (supabase/schema.sql). Empty values keep the built-in data.
    */
   supabase: {
-    url: '',
-    anonKey: '',
+    url: 'https://bsnbrzhgbtnxmqbsnytg.supabase.co',
+    anonKey:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzbmJyemhnYnRueG1xYnNueXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzOTY1MDcsImV4cCI6MjEwOTk3MjUwN30.hqdPX7AlgEZrdto-a-GH8Rf7V_IfGvHzk69072p9RiA',
     /** The panel's short login, mapped to the Supabase Auth user below. */
     adminLogin: 'koszalin',
     adminEmail: 'msdapartments+koszalin@gmail.com',
