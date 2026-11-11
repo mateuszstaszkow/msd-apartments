@@ -9,7 +9,7 @@ import { thumbnailSources } from '@/lib/youtube';
  *
  * Żagiel, Fala, Mewa, Łódź and Promenada carry the details from their live
  * listings; Latarnia and Bryza come from the owner's answers (November 2026).
- * Marina still holds PLACEHOLDER size, layout and prices.
+ * Laguna's layout and sale price are still unconfirmed.
  *
  * Photos live in /public/apartments/<slug>/01.jpg … 08.jpg (see public/apartments/README.md).
  */
@@ -31,6 +31,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Fałata',
     beach: { minutes: 18, mode: 'car' },
+    campusMinutes: 5,
     nearby: [
       { en: 'About 200 m to the bus stops', pl: 'Ok. 200 m do przystanków autobusowych' },
       {
@@ -97,6 +98,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Jana Pawła II',
     beach: { minutes: 17, mode: 'car' },
+    campusMinutes: 13,
     area: 24,
     rooms: 1,
     guests: 2,
@@ -152,6 +154,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Gałczyńskiego',
     beach: { minutes: 17, mode: 'car' },
+    campusMinutes: 13,
     nearby: [
       { en: '200 m to the ZUS bus stop', pl: '200 m do przystanku autobusowego ZUS' },
       { en: 'A park and two playgrounds within 120 m', pl: 'Park i dwa place zabaw w promieniu 120 m' },
@@ -214,6 +217,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Melchiora Wańkowicza',
     beach: { minutes: 17, mode: 'car' },
+    campusMinutes: 10,
     nearby: [
       {
         en: '300 m to the Staszica, ZUS and Wańkowicza stops',
@@ -283,6 +287,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Jana Pawła II',
     beach: { minutes: 17, mode: 'car' },
+    campusMinutes: 4,
     nearby: [
       {
         en: 'Opposite the main building of Koszalin University of Technology',
@@ -329,7 +334,7 @@ export const apartments: Apartment[] = [
       { en: 'Desk and office chair for working from home', pl: 'Biurko i krzesło biurowe do pracy zdalnej' },
     ],
     videos: { pov: '6-MAlsbBHlE' },
-    coords: { lat: 54.2047, lng: 16.1866 },
+    coords: { lat: 54.2034, lng: 16.1957 },
     featured: true,
     rented: true,
     photosPending: true,
@@ -351,6 +356,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Lelewela',
     beach: { minutes: 16, mode: 'car' },
+    campusMinutes: 11,
     nearby: [
       { en: 'Under 200 m to the bus stop', pl: 'Niecałe 200 m do przystanku autobusowego' },
       {
@@ -394,7 +400,7 @@ export const apartments: Apartment[] = [
         pl: 'Wanna ze szklanym parawanem i podwieszana toaleta Grohe',
       },
     ],
-    videos: { presentation: 'Yax3pRo_-mw' },
+    videos: { presentation: 'Yax3pRo_-mw', vertical: true, poster: 'apartments/fala/poster.jpg' },
     coords: { lat: 54.2092, lng: 16.1997 },
     rented: true,
     photosPending: true,
@@ -416,6 +422,7 @@ export const apartments: Apartment[] = [
     country: 'PL',
     street: 'ul. Kołłątaja 6a',
     beach: { minutes: 16, mode: 'car' },
+    campusMinutes: 10,
     area: 32,
     rooms: 1,
     guests: 2,
@@ -441,11 +448,10 @@ export const apartments: Apartment[] = [
     photosPending: true,
   },
   {
-    // TODO: confirm the nickname, size, layout and nightly rate. The resort,
-    // rooftop jacuzzi, sea view and on-site facilities are from the official
-    // Hacienda el Sueño listing (Calle Tranco 4, Las Lagunas de Mijas).
-    slug: 'marina',
-    name: 'Marina',
+    // The resort, rooftop jacuzzi, sea view and on-site facilities are from the
+    // official Hacienda el Sueño listing (Calle Tranco 4, Las Lagunas de Mijas).
+    slug: 'laguna',
+    name: 'Laguna',
     tagline: {
       en: 'Penthouse with a rooftop jacuzzi and a sea view',
       pl: 'Penthouse z jacuzzi na dachu i widokiem na morze',
@@ -468,7 +474,7 @@ export const apartments: Apartment[] = [
       { en: '10 min by car to La Cala de Mijas beach', pl: '10 min autem do plaży w La Cala de Mijas' },
       { en: '25 min by car from Málaga airport', pl: '25 min autem od lotniska w Maladze' },
     ],
-    area: 62,
+    area: 50,
     rooms: 2,
     guests: 4,
     beds: 3,
@@ -507,7 +513,7 @@ export const apartments: Apartment[] = [
       },
     ],
     // Short from youtube.com/@haciendaelsueno; the photos are stills from it.
-    videos: { presentation: 'TKR1yUgcHGI', vertical: true },
+    videos: { presentation: 'TKR1yUgcHGI', vertical: true, poster: 'apartments/laguna/01.jpg' },
     coords: { lat: 36.5242, lng: -4.6503 },
     featured: true,
     rented: true,
@@ -523,11 +529,22 @@ export function photoPaths(slug: string): string[] {
   );
 }
 
+/** Still frames for one of the apartment's films, best first. */
+export function filmStills(apartment: Apartment, videoId: string): string[] {
+  const { poster, presentation } = apartment.videos;
+  return poster && videoId === presentation
+    ? [asset(poster), ...thumbnailSources(videoId)]
+    : thumbnailSources(videoId);
+}
+
 /** Ordered fallbacks for an apartment's cover image: real photo → video still → gradient. */
 export function coverSources(apartment: Apartment): string[] {
   const videoId = apartment.videos.presentation ?? apartment.videos.pov;
-  return [photoPaths(apartment.slug)[0], ...(videoId ? thumbnailSources(videoId) : [])];
+  return [photoPaths(apartment.slug)[0], ...(videoId ? filmStills(apartment, videoId) : [])];
 }
+
+/** Slugs that were live before an apartment got its final name. */
+export const renamedSlugs: Record<string, string> = { marina: 'laguna' };
 
 export function getApartment(slug: string): Apartment | undefined {
   return apartments.find((apartment) => apartment.slug === slug);
@@ -535,7 +552,8 @@ export function getApartment(slug: string): Apartment | undefined {
 
 export function videoCount(): number {
   return apartments.reduce(
-    (total, apartment) => total + Object.values(apartment.videos).filter(Boolean).length,
+    (total, apartment) =>
+      total + [apartment.videos.presentation, apartment.videos.pov].filter(Boolean).length,
     0,
   );
 }

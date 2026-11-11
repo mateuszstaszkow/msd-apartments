@@ -16,7 +16,7 @@ public/apartments/<slug>/01.jpg … 08.jpg
 | `mewa`      | Mewa      | Koszalin              |
 | `fala`      | Fala      | Koszalin              |
 | `bryza`     | Bryza     | Koszalin              |
-| `marina`    | Marina    | Las Lagunas de Mijas, Costa del Sol |
+| `laguna`    | Laguna    | Las Lagunas de Mijas, Costa del Sol |
 
 ## Guidelines
 

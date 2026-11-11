@@ -49,7 +49,7 @@ export function Header() {
               transition={{ type: 'spring', stiffness: 300, damping: 18 }}
               className={cx(
                 'flex items-center rounded-2xl px-3 py-1.5 transition-[background-color,box-shadow] duration-500',
-                onDark ? 'bg-white/95 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]' : 'bg-transparent',
+                onDark ? 'bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]' : 'bg-transparent',
               )}
             >
               <img

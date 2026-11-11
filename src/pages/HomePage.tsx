@@ -13,14 +13,13 @@ import {
   CirclePlay,
   Sparkles,
 } from 'lucide-react';
-import { apartments, coverSources, videoCount } from '@/data/apartments';
+import { apartments, coverSources, filmStills, videoCount } from '@/data/apartments';
 import { site, stats } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { usePageMeta } from '@/lib/hooks';
 import { cx } from '@/lib/format';
 import { BackgroundVideo } from '@/components/media/BackgroundVideo';
 import { VideoLightbox } from '@/components/media/VideoLightbox';
-import { thumbnailSources } from '@/lib/youtube';
 import { ApartmentCard } from '@/components/apartments/ApartmentCard';
 import { Button, ButtonAnchor, ButtonLink } from '@/components/ui/Button';
 import { Counter } from '@/components/ui/Counter';
@@ -322,7 +321,7 @@ export function HomePage() {
                   )}
                 >
                   <SmartImage
-                    sources={thumbnailSources(id)}
+                    sources={filmStills(apartment, id)}
                     alt={`${apartment.name} — ${t(`detail.video.${kind}` as 'detail.video.pov')}`}
                     className="absolute inset-0 h-full w-full"
                     imgClassName="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"

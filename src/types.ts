@@ -39,6 +39,11 @@ export interface ApartmentVideos {
   pov?: string;
   /** The films are 9:16 Shorts, so they cannot fill the 16:9 hero background. */
   vertical?: boolean;
+  /**
+   * Landscape still under /public shown instead of the presentation's YouTube
+   * thumbnail, which for a Short is a narrow frame on a blurred background.
+   */
+  poster?: string;
 }
 
 export interface Apartment {
@@ -55,6 +60,8 @@ export interface Apartment {
   street: string;
   /** Time to the nearest beach. Koszalin is a drive away; a resort may be a walk. */
   beach?: { minutes: number; mode: 'walk' | 'car' };
+  /** Walk to the main campus of Koszalin University of Technology (ul. Śniadeckich 2). */
+  campusMinutes?: number;
   /** "200 m to the ZUS stop" style lines taken from the listing. */
   nearby?: Localized[];
   area: number;

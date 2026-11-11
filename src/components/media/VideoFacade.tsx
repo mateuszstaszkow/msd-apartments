@@ -8,6 +8,8 @@ import { embedUrl, thumbnailSources } from '@/lib/youtube';
 
 interface VideoFacadeProps {
   videoId: string;
+  /** Overrides YouTube's thumbnail, e.g. with a landscape still for a Short. */
+  stills?: string[];
   title: string;
   label?: string;
   className?: string;
@@ -19,7 +21,7 @@ interface VideoFacadeProps {
  * Lightweight YouTube embed: shows the still frame until clicked, then swaps in
  * the real player. Keeps the catalogue fast even with every film on the site.
  */
-export function VideoFacade({ videoId, title, label, className, eager }: VideoFacadeProps) {
+export function VideoFacade({ videoId, stills, title, label, className, eager }: VideoFacadeProps) {
   const [active, setActive] = useState(false);
   const { t } = useI18n();
 
@@ -46,7 +48,7 @@ export function VideoFacade({ videoId, title, label, className, eager }: VideoFa
           className="absolute inset-0 h-full w-full cursor-pointer"
         >
           <SmartImage
-            sources={thumbnailSources(videoId)}
+            sources={stills ?? thumbnailSources(videoId)}
             alt={title}
             eager={eager}
             className="absolute inset-0 h-full w-full"

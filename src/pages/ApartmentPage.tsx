@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowLeft,
@@ -10,6 +10,7 @@ import {
   CalendarCheck,
   Check,
   Footprints,
+  GraduationCap,
   KeyRound,
   MapPin,
   Maximize2,
@@ -20,7 +21,14 @@ import {
   Wallet,
   WavesHorizontal,
 } from 'lucide-react';
-import { apartments, coverSources, getApartment, photoPaths } from '@/data/apartments';
+import {
+  apartments,
+  coverSources,
+  filmStills,
+  getApartment,
+  photoPaths,
+  renamedSlugs,
+} from '@/data/apartments';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { cx, formatDate, formatPrice, mapsUrl } from '@/lib/format';
@@ -28,7 +36,6 @@ import { usePageMeta, useReducedMotionPreference } from '@/lib/hooks';
 import { amenityIcons } from '@/components/apartments/amenityIcons';
 import { Gallery } from '@/components/media/Gallery';
 import { VideoFacade } from '@/components/media/VideoFacade';
-import { thumbnailSources } from '@/lib/youtube';
 import { ButtonAnchor, ButtonLink } from '@/components/ui/Button';
 import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -50,6 +57,7 @@ export function ApartmentPage() {
   );
 
   if (!apartment) {
+    if (slug && renamedSlugs[slug]) return <Navigate to={`/apartments/${renamedSlugs[slug]}`} replace />;
     return (
       <section className="container-page flex min-h-[70vh] flex-col items-center justify-center py-40 text-center">
         <h1 className="font-display text-3xl font-semibold">{t('detail.notFound')}</h1>
@@ -81,6 +89,11 @@ export function ApartmentPage() {
       value: t(apartment.beach.mode === 'car' ? 'facts.minutes.car' : 'facts.minutes', {
         n: apartment.beach.minutes,
       }),
+    },
+    apartment.campusMinutes !== undefined && {
+      icon: GraduationCap,
+      label: t('facts.campus'),
+      value: t('facts.minutes.walk', { n: apartment.campusMinutes }),
     },
     apartment.serviceCharge !== undefined && {
       icon: Receipt,
@@ -374,7 +387,7 @@ export function ApartmentPage() {
               photos={photoPaths(apartment.slug)}
               fallbacks={
                 apartment.videos.presentation || apartment.videos.pov
-                  ? thumbnailSources((apartment.videos.presentation ?? apartment.videos.pov)!)
+                  ? filmStills(apartment, (apartment.videos.presentation ?? apartment.videos.pov)!)
                   : []
               }
               alt={apartment.name}
@@ -396,7 +409,12 @@ export function ApartmentPage() {
 
               return id ? (
                 <Reveal key={kind} delay={kind === 'pov' ? 0.1 : 0}>
-                  <VideoFacade videoId={id} title={`${apartment.name} — ${label}`} label={label} />
+                  <VideoFacade
+                    videoId={id}
+                    stills={filmStills(apartment, id)}
+                    title={`${apartment.name} — ${label}`}
+                    label={label}
+                  />
                 </Reveal>
               ) : (
                 <Reveal key={kind} delay={kind === 'pov' ? 0.1 : 0}>

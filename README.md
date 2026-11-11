@@ -45,11 +45,12 @@ page, the sticky mobile call bar and every call-to-action.
 One entry per apartment: nickname, bilingual tagline and description, size,
 capacity, price, amenities, coordinates and YouTube video ids.
 
-The Spanish penthouse (**Marina**, in Hacienda el Sueño, Las Lagunas de
-Mijas) still has a placeholder nickname, size, layout, nightly rate and sale
-price. If it is renamed, remember to rename the matching folder under
-`public/apartments/`. **Bryza** (ul. Kołłątaja 6a) still lacks its equipment
-list, neighbourhood and a fuller description.
+The Spanish penthouse (**Laguna**, formerly Marina, in Hacienda el Sueño,
+Las Lagunas de Mijas) still has an unconfirmed layout and sale price. If an
+apartment is renamed, rename its folder under `public/apartments/` and add the
+old slug to `renamedSlugs` so shared links keep working. **Bryza**
+(ul. Kołłątaja 6a) still lacks its equipment list, neighbourhood and a fuller
+description.
 
 ### Photos — `public/apartments/<slug>/01.jpg … 08.jpg`
 
@@ -61,7 +62,7 @@ film, the rest show a branded placeholder.
 
 The nine videos from [youtube.com/@msdapartments6010](https://www.youtube.com/@msdapartments6010),
 Fala's film from [youtube.com/@miroslaw368](https://www.youtube.com/@miroslaw368)
-and Marina's Short from [youtube.com/@haciendaelsueno](https://www.youtube.com/@haciendaelsueno)
+and Laguna's Short from [youtube.com/@haciendaelsueno](https://www.youtube.com/@haciendaelsueno)
 are wired up by id. Each apartment can have a `presentation` and a `pov` film;
 `vertical: true` marks Shorts, which stay out of the landing-page hero:
 
@@ -73,7 +74,7 @@ are wired up by id. Each apartment can have a `presentation` and a `pov` film;
 | Promenada | `VETQRa2nhbI` | `lhJNXaWSExc`   |
 | Mewa      | —             | `6-MAlsbBHlE`   |
 | Fala      | `Yax3pRo_-mw` | —               |
-| Marina    | `TKR1yUgcHGI` (Short) | —       |
+| Laguna    | `TKR1yUgcHGI` (Short) | —       |
 | Bryza     | —             | —               |
 
 Missing films show a "being edited" card instead of an empty space. Add new

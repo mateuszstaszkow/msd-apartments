@@ -7,6 +7,7 @@ import {
   MapPin,
   Maximize2,
   CirclePlay,
+  GraduationCap,
   Users,
   WavesHorizontal,
 } from 'lucide-react';
@@ -76,7 +77,7 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
               </h3>
               <p className="mt-1 flex items-center gap-1.5 text-xs font-medium text-white/85">
                 <MapPin className="h-3.5 w-3.5" />
-                {apartment.city}, {tl(apartment.region)}
+                {apartment.city}, {apartment.street}, {t(`country.${apartment.country}`)}
               </p>
             </div>
             <span className="flex h-11 w-11 shrink-0 translate-y-2 items-center justify-center rounded-full bg-white text-sea-700 opacity-0 shadow-glow transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
@@ -99,6 +100,13 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
               value={t(apartment.rooms === 1 ? 'card.rooms.one' : 'card.rooms', { n: apartment.rooms })}
             />
             {apartment.floor && <Fact icon={<Building2 className="h-4 w-4" />} value={tl(apartment.floor)} />}
+            {apartment.campusMinutes !== undefined && (
+              <Fact
+                icon={<GraduationCap className="h-4 w-4" />}
+                value={t('card.campus', { n: apartment.campusMinutes })}
+                wide
+              />
+            )}
             {apartment.beach && (
               <Fact
                 icon={<WavesHorizontal className="h-4 w-4" />}
