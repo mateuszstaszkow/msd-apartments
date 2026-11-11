@@ -8,8 +8,7 @@ import { thumbnailSources } from '@/lib/youtube';
  * apartments still waiting for a shoot simply leave the field out and the UI adapts.
  *
  * Żagiel, Fala, Mewa, Łódź and Promenada carry the details from their live
- * listings; Latarnia and Bryza come from the owner's answers (November 2026).
- * Laguna's layout and sale price are still unconfirmed.
+ * listings; Latarnia, Bryza and Laguna come from the owner's answers (November 2026).
  *
  * Photos live in /public/apartments/<slug>/01.jpg … 08.jpg (see public/apartments/README.md).
  */
@@ -22,8 +21,8 @@ export const apartments: Apartment[] = [
       pl: 'Apartament z widokiem przy Politechnice',
     },
     description: {
-      en: 'A comfortable 32 m² apartment for one or two people. The living room holds a double bed with a pocket-spring mattress, a fold-out sofa, a beech desk and the door to the balcony. The fitted kitchen has a beech worktop, a tall Amica fridge, an oven and a built-in dishwasher; there is also a washing machine, a vacuum cleaner and a 50" TV. The bathroom has an acrylic bathtub with a folding glass screen and a wall-hung toilet. Fully furnished and ready to move into, with a cellar that belongs to the flat. Let on an occasional-lease contract (najem okazjonalny), without commission, directly with the owner.',
-      pl: 'Komfortowy apartament o powierzchni 32 m² dla jednej lub dwóch osób. W salonie stoi dwuosobowe łóżko z materacem kieszeniowym, składany tapczan i bukowe biurko, a z salonu wychodzi się na balkon. Kuchnia w zabudowie ma bukowy blat, wysoką lodówkę Amica, piekarnik i zmywarkę w zabudowie; do tego pralka, odkurzacz i telewizor 50". W łazience jest akrylowa wanna ze składanym szklanym parawanem i podwieszana toaleta. Mieszkanie jest w pełni umeblowane i gotowe do wprowadzenia, przynależy do niego piwnica. Umowa najmu okazjonalnego, oferta bez prowizji, bezpośrednio od właściciela.',
+      en: 'A comfortable 32 m² apartment for one or two people. The living room holds a double bed with a pocket-spring mattress, a fold-out sofa, a beech desk and the door to the balcony. The fitted kitchen has a beech worktop, a tall Amica fridge, an oven and a built-in dishwasher; there is also a washing machine, a vacuum cleaner and a 50" TV. The bathroom has an acrylic bathtub with a folding glass screen and a wall-hung toilet. Fully furnished and ready to move into, with a cellar that belongs to the flat. Let on an occasional-lease contract (najem okazjonalny), without commission, directly with the owner. The tenant arranges their own internet.',
+      pl: 'Komfortowy apartament o powierzchni 32 m² dla jednej lub dwóch osób. W salonie stoi dwuosobowe łóżko z materacem kieszeniowym, składany tapczan i bukowe biurko, a z salonu wychodzi się na balkon. Kuchnia w zabudowie ma bukowy blat, wysoką lodówkę Amica, piekarnik i zmywarkę w zabudowie; do tego pralka, odkurzacz i telewizor 50". W łazience jest akrylowa wanna ze składanym szklanym parawanem i podwieszana toaleta. Mieszkanie jest w pełni umeblowane i gotowe do wprowadzenia, przynależy do niego piwnica. Umowa najmu okazjonalnego, oferta bez prowizji, bezpośrednio od właściciela. Internet najemca organizuje we własnym zakresie.',
     },
     city: 'Koszalin',
     district: { en: 'Przylesie', pl: 'Przylesie' },
@@ -48,6 +47,7 @@ export const apartments: Apartment[] = [
     guests: 2,
     beds: 2,
     bathrooms: 1,
+    floor: { en: '5th floor', pl: '5. piętro' },
     offer: 'rent',
     rentPeriod: 'month',
     price: 1890,
@@ -96,9 +96,9 @@ export const apartments: Apartment[] = [
     city: 'Koszalin',
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Jana Pawła II',
+    street: 'ul. Jana Pawła II 9A',
     beach: { minutes: 17, mode: 'car' },
-    campusMinutes: 13,
+    campusMinutes: 7,
     area: 24,
     rooms: 1,
     guests: 2,
@@ -132,8 +132,7 @@ export const apartments: Apartment[] = [
       },
     ],
     videos: { presentation: 'mC3kKnE5nMQ', pov: 'S_HH_PhOepY' },
-    coords: { lat: 54.2047, lng: 16.1866 },
-    featured: true,
+    coords: { lat: 54.2032, lng: 16.1932 },
     rented: true,
     photosPending: true,
   },
@@ -198,7 +197,6 @@ export const apartments: Apartment[] = [
     videos: { presentation: 'sBWYsI9pejg', pov: 'XO3isQPx3Vo' },
     coords: { lat: 54.1984, lng: 16.19 },
     rented: true,
-    photosPending: true,
   },
   {
     slug: 'promenada',
@@ -268,7 +266,6 @@ export const apartments: Apartment[] = [
     videos: { presentation: 'VETQRa2nhbI', pov: 'lhJNXaWSExc' },
     coords: { lat: 54.2024, lng: 16.1901 },
     rented: true,
-    photosPending: true,
   },
   {
     slug: 'mewa',
@@ -337,7 +334,6 @@ export const apartments: Apartment[] = [
     coords: { lat: 54.2034, lng: 16.1957 },
     featured: true,
     rented: true,
-    photosPending: true,
   },
   {
     slug: 'fala',
@@ -477,14 +473,13 @@ export const apartments: Apartment[] = [
     area: 50,
     rooms: 2,
     guests: 4,
-    beds: 3,
+    beds: 2,
     bathrooms: 2,
     floor: { en: 'Penthouse, rooftop terrace', pl: 'Penthouse, taras na dachu' },
-    offer: 'both',
+    offer: 'rent',
     rentPeriod: 'night',
     price: 120,
     currency: 'EUR',
-    salePrice: 425000,
     amenities: [
       'wifi',
       'jacuzzi',
@@ -511,12 +506,17 @@ export const apartments: Apartment[] = [
         en: 'Heated pool, lagoon, gym and sauna inside the resort',
         pl: 'Podgrzewany basen, laguna, siłownia i sauna na terenie resortu',
       },
+      {
+        en: 'Two bedrooms with double beds and two bathrooms',
+        pl: 'Dwie sypialnie z łóżkami dwuosobowymi i dwie łazienki',
+      },
+      { en: 'Short stays, also bookable on Booking.com', pl: 'Pobyty krótkoterminowe, rezerwacja także przez Booking.com' },
     ],
-    // Short from youtube.com/@haciendaelsueno; the photos are stills from it.
+    // Short from youtube.com/@haciendaelsueno, used with the resort's permission;
+    // the photos are stills from it.
     videos: { presentation: 'TKR1yUgcHGI', vertical: true, poster: 'apartments/laguna/01.jpg' },
     coords: { lat: 36.5242, lng: -4.6503 },
     featured: true,
-    rented: true,
   },
 ];
 

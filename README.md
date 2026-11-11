@@ -28,6 +28,7 @@ Node 20.19+ or 22.12+ is required by Vite 8.
 | Apartment               | `/apartments/:slug`  | Parallax hero, 8-photo gallery with lightbox, both films, booking card |
 | About                   | `/about`             | Company story, parallax collage, counters                            |
 | Contact                 | `/contact`           | Phone as the loudest element, WhatsApp, e-mail, hours, map, form     |
+| Privacy policy          | `/privacy`           | GDPR information clause, text in `src/data/privacy.ts`               |
 
 Everything is bilingual (English / Polish) — the toggle sits in the header and
 the choice is remembered in `localStorage`.
@@ -36,9 +37,10 @@ the choice is remembered in `localStorage`.
 
 ### Company details — `src/data/site.ts`
 
-**The phone number, e-mail, office address and social links are placeholders.**
-Replace them before going live; they are used by the header, footer, contact
-page, the sticky mobile call bar and every call-to-action.
+Phone number, e-mail, office address, social links and the registered business
+(name, address, NIP, REGON — shown in the footer and the privacy policy). They
+are used by the header, footer, contact page, the sticky mobile call bar and
+every call-to-action.
 
 ### Apartments — `src/data/apartments.ts`
 
@@ -46,7 +48,8 @@ One entry per apartment: nickname, bilingual tagline and description, size,
 capacity, price, amenities, coordinates and YouTube video ids.
 
 The Spanish penthouse (**Laguna**, formerly Marina, in Hacienda el Sueño,
-Las Lagunas de Mijas) still has an unconfirmed layout and sale price. If an
+Las Lagunas de Mijas) is let for short stays (also on Booking.com); every
+Koszalin flat is on a long-term lease. If an
 apartment is renamed, rename its folder under `public/apartments/` and add the
 old slug to `renamedSlugs` so shared links keep working. **Bryza**
 (ul. Kołłątaja 6a) still lacks its equipment list, neighbourhood and a fuller
@@ -128,9 +131,11 @@ The icons in `public/icons/` are generated from the company logo
 
 ### Contact form
 
-There is no backend yet: the form composes a message and hands it to the
-visitor's mail client. Point it at a real endpoint (Formspree, Resend, a small
-serverless function) in `ContactPage.tsx` when one exists.
+Messages are posted to [FormSubmit](https://formsubmit.co) (`site.formEndpoint`),
+which forwards them to msdapartments@gmail.com. The very first message triggers
+an activation e-mail to that inbox; until the link in it is clicked (and
+whenever FormSubmit fails) the form falls back to opening the visitor's mail
+client with the message pre-filled.
 
 ## Deployment
 

@@ -118,9 +118,18 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-sea-200/60 sm:flex-row">
-          <p>
-            © {year} {site.name}. {t('footer.rights')}
-          </p>
+          <div className="space-y-1.5 text-center sm:text-left">
+            <p>
+              © {year} {site.name}. {t('footer.rights')}{' '}
+              <Link to="/privacy" className="link-underline text-sea-200/80 hover:text-white">
+                {t('footer.privacy')}
+              </Link>
+            </p>
+            <p>
+              {t('footer.company')} {site.company.legalName}, {site.company.address} · NIP{' '}
+              {site.company.nip} · REGON {site.company.regon}
+            </p>
+          </div>
           <p className="tracking-[0.16em] uppercase">{t('footer.built')}</p>
         </div>
       </div>

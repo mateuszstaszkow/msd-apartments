@@ -31,13 +31,14 @@ export const dictionary = {
     'stats.apartments': 'Apartments managed',
     'stats.countries': 'Countries',
     'stats.guests': 'Happy guests',
+    'stats.guests.count': 'Hundreds',
 
     'about.eyebrow': 'Who we are',
     'about.title': 'A family company on two coastlines',
     'about.p1':
       'MSD Apartments is a company which handles properties rental and selling in cities near the sea. Since 2019 we have been taking care of every stage ourselves — from choosing the apartment and arranging the interior, through photography and film, to the keys landing in your hand.',
     'about.p2':
-      'Seven of our apartments are in Koszalin, a few minutes from the Baltic beaches of Mielno and Sarbinowo. The eighth one waits for you on Costa del Sol in Spain. Each of them has a name, a character and a film you can watch before you decide.',
+      'Seven of our apartments are in Koszalin, a few minutes from the Baltic beaches of Mielno and Sarbinowo. They are a short walk from Koszalin University of Technology and close to the Koszalin economic zone, so they suit anyone coming to Koszalin to study or to work. The eighth one waits for you on Costa del Sol in Spain. Each of them has a name, a character and a film you can watch before you decide.',
     'about.point1.title': 'We manage, not just list',
     'about.point1.text':
       'Cleaning, check-in, maintenance and guest communication are on us. Owners get reports, guests get answers within two hours.',
@@ -153,7 +154,7 @@ export const dictionary = {
     'locations.title': 'Two seas, one standard',
     'locations.baltic.title': 'Koszalin, Baltic Sea',
     'locations.baltic.text':
-      'Seven apartments in the greenest part of the city, a short drive from the Baltic beaches of Mielno, Chłopy and Sarbinowo, the Chełmska Hill and the amphitheatre.',
+      'Seven apartments in the greenest part of the city, a short drive from the Baltic beaches of Mielno, Chłopy and Sarbinowo, the Chełmska Hill and the amphitheatre. Walking distance to the University of Technology and close to the economic zone — for studies or for work.',
     'locations.costa.title': 'Costa del Sol, Spain',
     'locations.costa.text':
       'A penthouse with a rooftop jacuzzi and a sea view in the Hacienda el Sueño resort at Las Lagunas de Mijas, halfway between Málaga and Marbella. Ten minutes by car to the beach, 320 sunny days a year.',
@@ -206,7 +207,9 @@ export const dictionary = {
     'contact.form.sending': 'Sending…',
     'contact.form.success': 'Thank you! We will get back to you within two hours.',
     'contact.form.error': 'Please fill in your name, e-mail and message.',
-    'contact.form.note': 'By sending this form you agree to us contacting you about your enquiry.',
+    'contact.form.note': 'By sending this form you agree to us contacting you about your enquiry. More in the',
+    'contact.form.privacy': 'privacy policy',
+    'contact.form.failed': 'The message could not be sent from here, so we opened your e-mail app instead.',
 
     'footer.tagline': 'Property rental and selling in cities near the sea since 2019.',
     'footer.explore': 'Explore',
@@ -214,6 +217,11 @@ export const dictionary = {
     'footer.contact': 'Contact',
     'footer.rights': 'All rights reserved.',
     'footer.built': 'Koszalin · Costa del Sol',
+    'footer.privacy': 'Privacy policy',
+    'footer.company': 'Operated by',
+
+    'privacy.title': 'Privacy policy',
+    'privacy.updated': 'Last updated: {date}',
 
     'pwa.install.title': 'Install MSD Apartments',
     'pwa.install.text': 'Add the catalogue to your home screen and browse it offline.',
@@ -290,13 +298,14 @@ export const dictionary = {
     'stats.apartments': 'Apartamentów w opiece',
     'stats.countries': 'Kraje',
     'stats.guests': 'Zadowolonych gości',
+    'stats.guests.count': 'Setki',
 
     'about.eyebrow': 'Kim jesteśmy',
     'about.title': 'Rodzinna firma na dwóch wybrzeżach',
     'about.p1':
       'MSD Apartments to firma, która zajmuje się wynajmem i sprzedażą nieruchomości w miastach nad morzem. Od 2019 roku sami prowadzimy każdy etap — od wyboru mieszkania i aranżacji wnętrza, przez zdjęcia i film, aż po klucze w Twojej dłoni.',
     'about.p2':
-      'Siedem naszych apartamentów znajduje się w Koszalinie, kilka minut od bałtyckich plaż w Mielnie i Sarbinowie. Ósmy czeka na Costa del Sol w Hiszpanii. Każdy ma imię, charakter i film, który możesz obejrzeć przed decyzją.',
+      'Siedem naszych apartamentów znajduje się w Koszalinie, kilka minut od bałtyckich plaż w Mielnie i Sarbinowie. Mają blisko do Politechniki Koszalińskiej i do koszalińskiej strefy ekonomicznej, więc sprawdzą się dla każdego, kto przyjeżdża do Koszalina na studia albo do pracy. Ósmy czeka na Costa del Sol w Hiszpanii. Każdy ma imię, charakter i film, który możesz obejrzeć przed decyzją.',
     'about.point1.title': 'Zarządzamy, nie tylko ogłaszamy',
     'about.point1.text':
       'Sprzątanie, zameldowanie, serwis i kontakt z gośćmi są po naszej stronie. Właściciele dostają raporty, goście odpowiedź w dwie godziny.',
@@ -412,7 +421,7 @@ export const dictionary = {
     'locations.title': 'Dwa morza, jeden standard',
     'locations.baltic.title': 'Koszalin, Bałtyk',
     'locations.baltic.text':
-      'Siedem apartamentów w najbardziej zielonej części miasta, krótki dojazd do bałtyckich plaż w Mielnie, Chłopach i Sarbinowie, Góry Chełmskiej i amfiteatru.',
+      'Siedem apartamentów w najbardziej zielonej części miasta, krótki dojazd do bałtyckich plaż w Mielnie, Chłopach i Sarbinowie, Góry Chełmskiej i amfiteatru. Pieszo na Politechnikę i blisko strefy ekonomicznej — na studia albo do pracy.',
     'locations.costa.title': 'Costa del Sol, Hiszpania',
     'locations.costa.text':
       'Penthouse z jacuzzi na dachu i widokiem na morze w resorcie Hacienda el Sueño w Las Lagunas de Mijas, w połowie drogi między Malagą a Marbellą. Dziesięć minut autem do plaży, 320 słonecznych dni w roku.',
@@ -465,7 +474,9 @@ export const dictionary = {
     'contact.form.sending': 'Wysyłanie…',
     'contact.form.success': 'Dziękujemy! Odezwiemy się w ciągu dwóch godzin.',
     'contact.form.error': 'Uzupełnij imię, e-mail i treść wiadomości.',
-    'contact.form.note': 'Wysyłając formularz zgadzasz się na kontakt w sprawie Twojego zapytania.',
+    'contact.form.note': 'Wysyłając formularz zgadzasz się na kontakt w sprawie Twojego zapytania. Więcej w',
+    'contact.form.privacy': 'polityce prywatności',
+    'contact.form.failed': 'Nie udało się wysłać wiadomości stąd, więc otworzyliśmy Twój program pocztowy.',
 
     'footer.tagline': 'Wynajem i sprzedaż nieruchomości w miastach nad morzem od 2019 roku.',
     'footer.explore': 'Nawigacja',
@@ -473,6 +484,11 @@ export const dictionary = {
     'footer.contact': 'Kontakt',
     'footer.rights': 'Wszelkie prawa zastrzeżone.',
     'footer.built': 'Koszalin · Costa del Sol',
+    'footer.privacy': 'Polityka prywatności',
+    'footer.company': 'Serwis prowadzi',
+
+    'privacy.title': 'Polityka prywatności',
+    'privacy.updated': 'Ostatnia aktualizacja: {date}',
 
     'pwa.install.title': 'Zainstaluj MSD Apartments',
     'pwa.install.text': 'Dodaj katalog do ekranu głównego i przeglądaj go offline.',

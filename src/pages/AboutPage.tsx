@@ -50,7 +50,11 @@ export function AboutPage() {
             <Reveal key={stat.key} delay={index * 0.08}>
               <div className="rounded-2xl border border-sea-100 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-soft">
                 <p className="font-display text-4xl font-semibold text-sea-600 sm:text-5xl">
-                  <Counter value={stat.value} suffix={stat.suffix} plain={stat.key === 'since'} />
+                  {'value' in stat ? (
+                    <Counter value={stat.value} suffix={stat.suffix} plain={stat.key === 'since'} />
+                  ) : (
+                    t('stats.guests.count')
+                  )}
                 </p>
                 <p className="mt-2 text-sm text-ink-soft">{t(`stats.${stat.key}` as 'stats.since')}</p>
               </div>

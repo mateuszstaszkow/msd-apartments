@@ -15,6 +15,8 @@ type OfferFilter = 'all' | 'rent' | 'sale';
 type GuestFilter = 'all' | 2 | 4 | 6;
 type SortKey = 'featured' | 'priceAsc' | 'priceDesc' | 'area';
 
+const anyForSale = apartments.some((apartment) => apartment.offer !== 'rent');
+
 export function CataloguePage() {
   const { t } = useI18n();
   const [location, setLocation] = useState<LocationFilter>('all');
@@ -93,17 +95,19 @@ export function CataloguePage() {
             </Chip>
           </FilterGroup>
 
-          <FilterGroup label={t('catalogue.filter.offer')}>
-            <Chip group="offer" active={offer === 'all'} onClick={() => setOffer('all')}>
-              {t('catalogue.filter.all')}
-            </Chip>
-            <Chip group="offer" active={offer === 'rent'} onClick={() => setOffer('rent')}>
-              {t('catalogue.offer.rent')}
-            </Chip>
-            <Chip group="offer" active={offer === 'sale'} onClick={() => setOffer('sale')}>
-              {t('catalogue.offer.sale')}
-            </Chip>
-          </FilterGroup>
+          {anyForSale && (
+            <FilterGroup label={t('catalogue.filter.offer')}>
+              <Chip group="offer" active={offer === 'all'} onClick={() => setOffer('all')}>
+                {t('catalogue.filter.all')}
+              </Chip>
+              <Chip group="offer" active={offer === 'rent'} onClick={() => setOffer('rent')}>
+                {t('catalogue.offer.rent')}
+              </Chip>
+              <Chip group="offer" active={offer === 'sale'} onClick={() => setOffer('sale')}>
+                {t('catalogue.offer.sale')}
+              </Chip>
+            </FilterGroup>
+          )}
 
           <FilterGroup label={t('catalogue.filter.guests')}>
             {(['all', 2, 4, 6] as const).map((value) => (

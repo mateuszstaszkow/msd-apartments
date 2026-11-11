@@ -40,6 +40,8 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'logo.png', 'robots.txt'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,jpg,jpeg,woff2}'],
+        // Apartment photos go through the runtime cache below, not the install download.
+        globIgnores: ['apartments/**'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         navigateFallback: `${base}index.html`,
         runtimeCaching: [

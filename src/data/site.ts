@@ -28,6 +28,16 @@ export const site = {
     saturday: null,
     sunday: null,
   },
+  /** Registered business (CEIDG) behind the MSD Apartments brand; also the data controller. */
+  company: {
+    legalName: 'Mateusz Staszków Software Development',
+    owner: 'Mateusz Staszków',
+    address: 'ul. Marcina Kasprzaka 29/2505, 01-234 Warszawa',
+    nip: '6692513858',
+    regon: '380518930',
+  },
+  /** FormSubmit relays contact-form messages to this inbox (activated by its first message). */
+  formEndpoint: 'https://formsubmit.co/ajax/msdapartments@gmail.com',
   socials: {
     youtube: 'https://www.youtube.com/@msdapartments6010',
   },
@@ -39,5 +49,6 @@ export const stats = [
   { value: 2019, suffix: '', key: 'since' },
   { value: 8, suffix: '', key: 'apartments' },
   { value: 2, suffix: '', key: 'countries' },
-  { value: 1200, suffix: '+', key: 'guests' },
+  /** No exact count, so the UI says "hundreds" instead of a number. */
+  { key: 'guests' },
 ] as const;

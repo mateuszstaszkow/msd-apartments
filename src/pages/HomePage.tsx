@@ -176,7 +176,11 @@ export function HomePage() {
             <Reveal key={stat.key} delay={index * 0.08}>
               <div className="border-l-2 border-sea-100 pl-5">
                 <p className="font-display text-4xl font-semibold text-ink sm:text-5xl">
-                  <Counter value={stat.value} suffix={stat.suffix} plain={stat.key === 'since'} />
+                  {'value' in stat ? (
+                    <Counter value={stat.value} suffix={stat.suffix} plain={stat.key === 'since'} />
+                  ) : (
+                    t('stats.guests.count')
+                  )}
                 </p>
                 <p className="mt-2 text-sm text-ink-soft">
                   {t(`stats.${stat.key}` as 'stats.since')}

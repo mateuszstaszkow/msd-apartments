@@ -6,6 +6,7 @@ import { ApartmentPage } from '@/pages/ApartmentPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { PrivacyPage } from '@/pages/PrivacyPage';
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <Route path="apartments/:slug" element={<ApartmentPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="privacy" element={<PrivacyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

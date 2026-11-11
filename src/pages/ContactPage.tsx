@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { apartments } from '@/data/apartments';
@@ -21,7 +21,7 @@ const officeMapUrl = (() => {
 export function ContactPage() {
   const { t } = useI18n();
   const [params] = useSearchParams();
-  const [status, setStatus] = useState<'idle' | 'error' | 'sent'>('idle');
+  const [status, setStatus] = useState<'idle' | 'error' | 'sending' | 'sent' | 'failed'>('idle');
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -37,12 +37,13 @@ export function ContactPage() {
 
   function update(field: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
-    if (status !== 'idle') setStatus('idle');
+    if (status !== 'idle' && status !== 'sending') setStatus('idle');
   }
 
-  /** No backend yet — the message is handed over to the visitor's mail client. */
-  function submit(event: FormEvent) {
+  /** Sends through FormSubmit; if that fails, the message goes to the visitor's mail client instead. */
+  async function submit(event: FormEvent) {
     event.preventDefault();
+    if (status === 'sending') return;
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setStatus('error');
       return;
@@ -64,8 +65,29 @@ export function ContactPage() {
       .filter(Boolean)
       .join('\n');
 
-    window.location.href = `${site.email.href}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setStatus('sent');
+    setStatus('sending');
+    try {
+      const response = await fetch(site.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: subject,
+          _template: 'table',
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          apartment: apartment?.name ?? '',
+          message: form.message,
+        }),
+      });
+      const result = (await response.json()) as { success?: string | boolean };
+      if (!response.ok || String(result.success) !== 'true') throw new Error('FormSubmit rejected');
+      setStatus('sent');
+      setForm((current) => ({ ...current, message: '' }));
+    } catch {
+      window.location.href = `${site.email.href}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setStatus('failed');
+    }
   }
 
   return (
@@ -244,19 +266,33 @@ export function ContactPage() {
                     {t('contact.form.success')}
                   </motion.p>
                 )}
+                {status === 'failed' && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800"
+                  >
+                    {t('contact.form.failed')}
+                  </motion.p>
+                )}
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <Magnetic>
                     <button
                       type="submit"
-                      className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-sea-600 px-7 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:bg-sea-700 active:scale-[0.97]"
+                      disabled={status === 'sending'}
+                      className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-sea-600 px-7 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:bg-sea-700 active:scale-[0.97] disabled:cursor-wait disabled:opacity-70"
                     >
                       <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      {t('contact.form.submit')}
+                      {t(status === 'sending' ? 'contact.form.sending' : 'contact.form.submit')}
                     </button>
                   </Magnetic>
                   <p className="max-w-xs text-xs leading-relaxed text-ink-muted">
-                    {t('contact.form.note')}
+                    {t('contact.form.note')}{' '}
+                    <Link to="/privacy" className="link-underline font-semibold text-sea-700">
+                      {t('contact.form.privacy')}
+                    </Link>
+                    .
                   </p>
                 </div>
               </form>
