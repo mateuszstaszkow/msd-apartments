@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { apartments, coverSources, filmStills, videoCount } from '@/data/apartments';
+import { useApartments } from '@/data/live';
 import { site, stats } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { usePageMeta } from '@/lib/hooks';
@@ -44,7 +45,9 @@ const reel = apartments.flatMap((apartment) =>
 export function HomePage() {
   const { t, tl } = useI18n();
   const [film, setFilm] = useState<string | null>(null);
-  const featured = apartments.filter((apartment) => apartment.featured).slice(0, 3);
+  const featured = useApartments()
+    .filter((apartment) => apartment.featured)
+    .slice(0, 3);
   const balticCount = apartments.filter((apartment) => apartment.country === 'PL').length;
   const spainCount = apartments.filter((apartment) => apartment.country === 'ES').length;
 

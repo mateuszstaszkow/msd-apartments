@@ -83,6 +83,10 @@ export interface Apartment {
   availableFrom?: string;
   /** A tenant lives there now; enquiries are about the next opening. */
   rented?: boolean;
+  /** ISO date the current lease ends, when known. */
+  rentedUntil?: string;
+  /** External listing (OLX, Otodom, Booking.com…). */
+  listingUrl?: string;
   currency: 'PLN' | 'EUR';
   /** Asking price when the apartment is also for sale. */
   salePrice?: number;

@@ -14,7 +14,7 @@ import {
 import type { Apartment } from '@/types';
 import { coverSources } from '@/data/apartments';
 import { useI18n } from '@/i18n';
-import { cx, formatPrice } from '@/lib/format';
+import { cx, formatDate, formatPrice } from '@/lib/format';
 import { useReveal } from '@/components/ui/Reveal';
 import { SmartImage } from '@/components/ui/SmartImage';
 
@@ -61,7 +61,14 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
             </span>
             {apartment.rented && (
               <span className="rounded-full bg-white px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sea-700 shadow-soft">
-                {t('card.rented')}
+                {apartment.rentedUntil
+                  ? t('card.rentedUntil', { date: formatDate(apartment.rentedUntil, locale, 'short') })
+                  : t('card.rented')}
+              </span>
+            )}
+            {apartment.rented === false && (
+              <span className="rounded-full bg-emerald-500 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white shadow-soft">
+                {t('card.available')}
               </span>
             )}
             {filmCount > 0 && (

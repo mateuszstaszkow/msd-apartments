@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RotateCcw, SlidersHorizontal } from 'lucide-react';
 import type { Apartment } from '@/types';
-import { apartments } from '@/data/apartments';
+import { apartments as staticApartments } from '@/data/apartments';
+import { useApartments } from '@/data/live';
 import { useI18n } from '@/i18n';
 import { cx } from '@/lib/format';
 import { usePageMeta } from '@/lib/hooks';
@@ -15,7 +16,7 @@ type OfferFilter = 'all' | 'rent' | 'sale';
 type GuestFilter = 'all' | 2 | 4 | 6;
 type SortKey = 'featured' | 'priceAsc' | 'priceDesc' | 'area';
 
-const anyForSale = apartments.some((apartment) => apartment.offer !== 'rent');
+const anyForSale = staticApartments.some((apartment) => apartment.offer !== 'rent');
 
 export function CataloguePage() {
   const { t } = useI18n();
@@ -23,6 +24,7 @@ export function CataloguePage() {
   const [offer, setOffer] = useState<OfferFilter>('all');
   const [guests, setGuests] = useState<GuestFilter>('all');
   const [sort, setSort] = useState<SortKey>('featured');
+  const apartments = useApartments();
 
   usePageMeta(
     'Apartments — MSD Apartments',
@@ -46,7 +48,7 @@ export function CataloguePage() {
     };
 
     return [...filtered].sort(sorters[sort]);
-  }, [location, offer, guests, sort]);
+  }, [apartments, location, offer, guests, sort]);
 
   const dirty = location !== 'all' || offer !== 'all' || guests !== 'all' || sort !== 'featured';
 

@@ -29,6 +29,7 @@ Node 20.19+ or 22.12+ is required by Vite 8.
 | About                   | `/about`             | Company story, parallax collage, counters                            |
 | Contact                 | `/contact`           | Phone as the loudest element, WhatsApp, e-mail, hours, map, form     |
 | Privacy policy          | `/privacy`           | GDPR information clause, text in `src/data/privacy.ts`               |
+| Admin                   | `/admin`             | Login, then price, listing link and lease status for every apartment |
 
 Everything is bilingual (English / Polish) — the toggle sits in the header and
 the choice is remembered in `localStorage`.
@@ -128,6 +129,30 @@ service worker does not run under `npm run dev`.
 
 The icons in `public/icons/` are generated from the company logo
 (`public/logo.png`, cropped to `public/logo-mark.png` for the header).
+
+### Admin panel — Supabase
+
+`/admin` edits each apartment's price, listing link and status (available, or
+let until a date). The values live in the `apartment_overrides` table of a free
+[Supabase](https://supabase.com) project and override `src/data/apartments.ts`
+on the live site; an empty field keeps the built-in value. The public site
+reads them with one REST request (`src/data/live.ts`) and caches the last
+answer in `localStorage`; the panel itself is a lazily loaded chunk.
+
+One-time setup:
+
+1. Create a project on supabase.com.
+2. SQL Editor → paste [`supabase/schema.sql`](supabase/schema.sql) → Run.
+3. Authentication → Users → Add user: e-mail `msdapartments+koszalin@gmail.com`
+   (`site.supabase.adminEmail`), password `koszalin`, *Auto Confirm User*.
+4. Authentication → Sign In / Providers → turn off *Allow new users to sign up*.
+5. Project Settings → API: copy the project URL and the `anon` public key into
+   `site.supabase` in `src/data/site.ts`, then push.
+
+The login `koszalin` is mapped to that e-mail in the browser; the password is
+checked by Supabase Auth, and row-level security only lets that account write.
+Until `site.supabase` is filled in, the site uses the built-in data and `/admin`
+says it is not connected.
 
 ### Contact form
 

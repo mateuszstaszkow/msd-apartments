@@ -20,11 +20,11 @@ export function formatNumber(value: number, locale: Locale): string {
   return new Intl.NumberFormat(localeTag[locale]).format(value);
 }
 
-/** Renders an ISO date such as `2026-07-18` as a readable day. */
-export function formatDate(iso: string, locale: Locale): string {
+/** Renders an ISO date such as `2026-07-18` as a readable day (`short` gives 18.07.2026). */
+export function formatDate(iso: string, locale: Locale, style: 'long' | 'short' = 'long'): string {
   return new Intl.DateTimeFormat(localeTag[locale], {
-    day: 'numeric',
-    month: 'long',
+    day: style === 'short' ? '2-digit' : 'numeric',
+    month: style === 'short' ? '2-digit' : 'long',
     year: 'numeric',
   }).format(new Date(`${iso}T00:00:00`));
 }

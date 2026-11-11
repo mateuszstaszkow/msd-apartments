@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   Bath,
   BedDouble,
   Building2,
@@ -25,10 +26,10 @@ import {
   apartments,
   coverSources,
   filmStills,
-  getApartment,
   photoPaths,
   renamedSlugs,
 } from '@/data/apartments';
+import { useApartment } from '@/data/live';
 import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { cx, formatDate, formatPrice, mapsUrl } from '@/lib/format';
@@ -43,7 +44,7 @@ import { SmartImage } from '@/components/ui/SmartImage';
 
 export function ApartmentPage() {
   const { slug } = useParams<{ slug: string }>();
-  const apartment = slug ? getApartment(slug) : undefined;
+  const apartment = useApartment(slug);
   const { t, tl, locale } = useI18n();
   const reduced = useReducedMotionPreference();
   const { scrollY } = useScroll();
@@ -306,7 +307,9 @@ export function ApartmentPage() {
                 <div className="mt-5 rounded-2xl border border-sea-200 bg-white/80 p-4">
                   <p className="flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sea-700">
                     <KeyRound className="h-3.5 w-3.5" />
-                    {t('detail.rented')}
+                    {apartment.rentedUntil
+                      ? t('detail.rentedUntil', { date: formatDate(apartment.rentedUntil, locale) })
+                      : t('detail.rented')}
                   </p>
                   <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{t('detail.rented.text')}</p>
                 </div>
@@ -337,6 +340,19 @@ export function ApartmentPage() {
                 >
                   {t(apartment.rented ? 'detail.waitlist' : monthly ? 'detail.viewing' : 'detail.book')}
                 </ButtonLink>
+                {apartment.listingUrl && (
+                  <ButtonAnchor
+                    href={apartment.listingUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    variant="secondary"
+                    size="lg"
+                    className="w-full"
+                  >
+                    {t('detail.listing')}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </ButtonAnchor>
+                )}
               </div>
 
               <div className="mt-6 space-y-3 border-t border-sea-100 pt-5 text-sm text-ink-soft">

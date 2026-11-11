@@ -36,6 +36,18 @@ export const site = {
     nip: '6692513858',
     regon: '380518930',
   },
+  /**
+   * Supabase project holding the admin panel's prices, listing links and lease
+   * status. The anon key is public by design; writes are guarded by row-level
+   * security (supabase/schema.sql). Empty values keep the built-in data.
+   */
+  supabase: {
+    url: '',
+    anonKey: '',
+    /** The panel's short login, mapped to the Supabase Auth user below. */
+    adminLogin: 'koszalin',
+    adminEmail: 'msdapartments+koszalin@gmail.com',
+  },
   /** FormSubmit relays contact-form messages to this inbox (activated by its first message). */
   formEndpoint: 'https://formsubmit.co/ajax/msdapartments@gmail.com',
   socials: {
