@@ -1,5 +1,26 @@
-import { motion, type Variants } from 'framer-motion';
-import type { ElementType, ReactNode } from 'react';
+import { motion, useInView, type Variants } from 'framer-motion';
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from 'react';
+
+/**
+ * True once the element has entered the viewport. Elements already on screen
+ * when they mount are revealed straight away: Safari may not deliver the first
+ * IntersectionObserver callback after a route change until the user scrolls.
+ */
+export function useReveal<T extends Element>(amount = 0.25, once = true) {
+  const ref = useRef<T>(null);
+  const inView = useInView(ref, { once, amount });
+  const [onScreenAtMount, setOnScreenAtMount] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (rect && rect.top < window.innerHeight && rect.bottom > 0) setOnScreenAtMount(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  return [ref, inView || (once && onScreenAtMount)] as const;
+}
 
 type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
 
@@ -35,13 +56,15 @@ export function Reveal({
 }: RevealProps) {
   const MotionTag = motion[as as 'div'];
   const offset = offsets[direction];
+  const [ref, revealed] = useReveal<HTMLDivElement>(amount, once);
+  const hidden = { opacity: 0, x: offset.x, y: offset.y, filter: 'blur(6px)' };
 
   return (
     <MotionTag
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, x: offset.x, y: offset.y, filter: 'blur(6px)' }}
-      whileInView={{ opacity: 1, x: 0, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once, amount }}
+      initial={hidden}
+      animate={revealed ? { opacity: 1, x: 0, y: 0, filter: 'blur(0px)' } : hidden}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -73,13 +96,15 @@ interface StaggerProps {
 }
 
 export function Stagger({ children, className, amount = 0.15 }: StaggerProps) {
+  const [ref, revealed] = useReveal<HTMLDivElement>(amount);
+
   return (
     <motion.div
+      ref={ref}
       className={className}
       variants={staggerContainer}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount }}
+      animate={revealed ? 'visible' : 'hidden'}
     >
       {children}
     </motion.div>
@@ -107,13 +132,14 @@ export function AnimatedWords({
   wordClassName?: string;
 }) {
   const words = text.split(' ');
+  const [ref, revealed] = useReveal<HTMLSpanElement>(0.5);
 
   return (
     <motion.span
+      ref={ref}
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      animate={revealed ? 'visible' : 'hidden'}
       transition={{ staggerChildren: 0.055, delayChildren: delay }}
       aria-label={text}
     >

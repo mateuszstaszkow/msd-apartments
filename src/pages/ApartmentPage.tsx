@@ -37,7 +37,7 @@ import { amenityIcons } from '@/components/apartments/amenityIcons';
 import { Gallery } from '@/components/media/Gallery';
 import { VideoFacade } from '@/components/media/VideoFacade';
 import { ButtonAnchor, ButtonLink } from '@/components/ui/Button';
-import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
+import { AnimatedWords, Reveal, useReveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SmartImage } from '@/components/ui/SmartImage';
 
@@ -50,6 +50,7 @@ export function ApartmentPage() {
   const heroY = useTransform(scrollY, [0, 700], [0, 160]);
   const heroScale = useTransform(scrollY, [0, 700], [1, 1.14]);
   const [copied, setCopied] = useState(false);
+  const [asideRef, asideRevealed] = useReveal<HTMLElement>(0);
 
   usePageMeta(
     apartment ? `${apartment.name} — MSD Apartments` : 'MSD Apartments',
@@ -278,9 +279,9 @@ export function ApartmentPage() {
           {/* Sticky booking card */}
           <div className="lg:relative">
             <motion.aside
+              ref={asideRef}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={asideRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="glass-panel sticky top-28 rounded-3xl p-6 shadow-card sm:p-7"
             >

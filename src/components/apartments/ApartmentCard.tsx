@@ -15,6 +15,7 @@ import type { Apartment } from '@/types';
 import { coverSources } from '@/data/apartments';
 import { useI18n } from '@/i18n';
 import { cx, formatPrice } from '@/lib/format';
+import { useReveal } from '@/components/ui/Reveal';
 import { SmartImage } from '@/components/ui/SmartImage';
 
 interface ApartmentCardProps {
@@ -28,12 +29,13 @@ export function ApartmentCard({ apartment, index = 0, size = 'default' }: Apartm
   const { t, tl, locale } = useI18n();
   const filmCount = [apartment.videos.presentation, apartment.videos.pov].filter(Boolean).length;
   const monthly = apartment.rentPeriod === 'month';
+  const [ref, revealed] = useReveal<HTMLElement>(0.2);
 
   return (
     <motion.article
+      ref={ref}
       initial={{ opacity: 0, y: 44 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 44 }}
       transition={{ duration: 0.7, delay: Math.min(index, 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group h-full"
     >
