@@ -45,12 +45,11 @@ page, the sticky mobile call bar and every call-to-action.
 One entry per apartment: nickname, bilingual tagline and description, size,
 capacity, price, amenities, coordinates and YouTube video ids.
 
-Two entries still need a real nickname: the seventh Koszalin apartment
-(currently **Bryza**) and the Spanish penthouse (currently **Marina**, in
-Hacienda el Sueño, Las Lagunas de Mijas). Size, layout and nightly rate of
-the penthouse are still placeholders. Rename them and adjust `street`/`coords`
-when you have the details, and remember to rename the matching folder under
-`public/apartments/`.
+The Spanish penthouse (**Marina**, in Hacienda el Sueño, Las Lagunas de
+Mijas) still has a placeholder nickname, size, layout, nightly rate and sale
+price. If it is renamed, remember to rename the matching folder under
+`public/apartments/`. **Bryza** (ul. Kołłątaja 6a) still lacks its equipment
+list, neighbourhood and a fuller description.
 
 ### Photos — `public/apartments/<slug>/01.jpg … 08.jpg`
 

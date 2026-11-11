@@ -192,20 +192,22 @@ export function ApartmentPage() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.highlights')}</h3>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {apartment.highlights.map((highlight) => (
-                  <li
-                    key={highlight.en}
-                    className="flex items-start gap-3 rounded-xl border border-sea-100 bg-sea-50/50 px-4 py-3 text-sm text-ink-soft"
-                  >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-sea-500" />
-                    {tl(highlight)}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            {apartment.highlights.length > 0 && (
+              <Reveal delay={0.1}>
+                <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.highlights')}</h3>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {apartment.highlights.map((highlight) => (
+                    <li
+                      key={highlight.en}
+                      className="flex items-start gap-3 rounded-xl border border-sea-100 bg-sea-50/50 px-4 py-3 text-sm text-ink-soft"
+                    >
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-sea-500" />
+                      {tl(highlight)}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
 
             <Reveal delay={0.14}>
               <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.facts')}</h3>
@@ -225,23 +227,25 @@ export function ApartmentPage() {
               </dl>
             </Reveal>
 
-            <Reveal delay={0.18}>
-              <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.amenities')}</h3>
-              <ul className="mt-5 flex flex-wrap gap-2.5">
-                {apartment.amenities.map((amenity) => {
-                  const Icon = amenityIcons[amenity];
-                  return (
-                    <li
-                      key={amenity}
-                      className="group flex items-center gap-2 rounded-full border border-sea-100 bg-white px-4 py-2.5 text-sm text-ink-soft transition duration-300 hover:border-sea-400 hover:bg-sea-50"
-                    >
-                      <Icon className="h-4 w-4 text-sea-500" />
-                      {t(`amenity.${amenity}` as 'amenity.wifi')}
-                    </li>
-                  );
-                })}
-              </ul>
-            </Reveal>
+            {apartment.amenities.length > 0 && (
+              <Reveal delay={0.18}>
+                <h3 className="mt-12 font-display text-lg font-semibold">{t('detail.amenities')}</h3>
+                <ul className="mt-5 flex flex-wrap gap-2.5">
+                  {apartment.amenities.map((amenity) => {
+                    const Icon = amenityIcons[amenity];
+                    return (
+                      <li
+                        key={amenity}
+                        className="group flex items-center gap-2 rounded-full border border-sea-100 bg-white px-4 py-2.5 text-sm text-ink-soft transition duration-300 hover:border-sea-400 hover:bg-sea-50"
+                      >
+                        <Icon className="h-4 w-4 text-sea-500" />
+                        {t(`amenity.${amenity}` as 'amenity.wifi')}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+            )}
 
             {apartment.nearby && (
               <Reveal delay={0.22}>
