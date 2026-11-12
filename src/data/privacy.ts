@@ -88,8 +88,8 @@ export const privacySections: { title: Localized; paragraphs: Localized[] }[] = 
         pl: 'Ta strona nie używa własnych plików cookies ani narzędzi analitycznych. Przeglądarka zapisuje jedynie wybrany język oraz — jeśli zainstalujesz stronę jako aplikację — kopię strony do pracy offline (pamięć lokalna i service worker).',
       },
       {
-        en: 'Films are played from YouTube in privacy-enhanced mode (youtube-nocookie.com), the map on the contact page comes from OpenStreetMap and the fonts from Google Fonts. When this content loads, those providers receive your IP address and technical details of your browser, under their own privacy policies.',
-        pl: 'Filmy odtwarzamy z YouTube w trybie rozszerzonej prywatności (youtube-nocookie.com), mapa na stronie kontaktu pochodzi z OpenStreetMap, a czcionki z Google Fonts. Gdy te treści się ładują, ich dostawcy otrzymują Twój adres IP i techniczne informacje o przeglądarce, na zasadach własnych polityk prywatności.',
+        en: 'Films are played from YouTube in privacy-enhanced mode (youtube-nocookie.com), the maps come from OpenStreetMap and the fonts from Google Fonts. When this content loads, those providers receive your IP address and technical details of your browser, under their own privacy policies.',
+        pl: 'Filmy odtwarzamy z YouTube w trybie rozszerzonej prywatności (youtube-nocookie.com), mapy pochodzą z OpenStreetMap, a czcionki z Google Fonts. Gdy te treści się ładują, ich dostawcy otrzymują Twój adres IP i techniczne informacje o przeglądarce, na zasadach własnych polityk prywatności.',
       },
     ],
   },

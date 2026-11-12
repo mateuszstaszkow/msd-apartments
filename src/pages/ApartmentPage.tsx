@@ -358,7 +358,7 @@ export function ApartmentPage() {
               <div className="mt-6 space-y-3 border-t border-sea-100 pt-5 text-sm text-ink-soft">
                 <p className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 shrink-0 text-sea-500" />
-                  {t(monthly ? 'detail.location.viewing' : 'detail.location.text')}
+                  {apartment.street}, {apartment.city}
                 </p>
                 <a
                   href={mapsUrl(apartment.coords.lat, apartment.coords.lng, `${apartment.street}, ${apartment.city}`)}

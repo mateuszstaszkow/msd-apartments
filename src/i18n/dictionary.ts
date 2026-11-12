@@ -56,6 +56,12 @@ export const dictionary = {
       'The apartments our guests come back to. Every one of them filmed, measured and ready.',
     'featured.cta': 'See all 8 apartments',
 
+    'map.eyebrow': 'On the map',
+    'map.title': 'Where our apartments are',
+    'map.subtitle':
+      'Our Koszalin flats are 6 to 14 minutes on foot from Koszalin University of Technology. Tap a pin for the address, or find our office at ul. Fińska 50.',
+    'map.office': 'MSD Apartments office',
+    'map.details': 'See the apartment',
     'catalogue.eyebrow': 'The catalogue',
     'catalogue.title': 'Eight apartments, pick yours',
     'catalogue.subtitle':
@@ -113,8 +119,6 @@ export const dictionary = {
     'detail.amenities': 'Amenities',
     'detail.facts': 'Key facts',
     'detail.location': 'Location',
-    'detail.location.text': 'Exact address is shared after booking.',
-    'detail.location.viewing': 'The exact address is confirmed when we arrange the viewing.',
     'detail.map': 'Open in maps',
     'detail.nearby': 'The neighbourhood',
     'detail.book': 'Check availability',
@@ -351,6 +355,12 @@ export const dictionary = {
       'Te, do których goście wracają. Każdy sfilmowany, zmierzony i gotowy na Twój przyjazd.',
     'featured.cta': 'Zobacz wszystkie 8 apartamentów',
 
+    'map.eyebrow': 'Na mapie',
+    'map.title': 'Gdzie są nasze mieszkania',
+    'map.subtitle':
+      'Nasze mieszkania w Koszalinie leżą 6–14 minut pieszo od Politechniki Koszalińskiej. Kliknij pinezkę, żeby zobaczyć adres, albo znajdź nasze biuro przy ul. Fińskiej 50.',
+    'map.office': 'Biuro MSD Apartments',
+    'map.details': 'Zobacz mieszkanie',
     'catalogue.eyebrow': 'Katalog',
     'catalogue.title': 'Osiem apartamentów, wybierz swój',
     'catalogue.subtitle':
@@ -408,8 +418,6 @@ export const dictionary = {
     'detail.amenities': 'Udogodnienia',
     'detail.facts': 'Najważniejsze informacje',
     'detail.location': 'Lokalizacja',
-    'detail.location.text': 'Dokładny adres przekazujemy po rezerwacji.',
-    'detail.location.viewing': 'Dokładny adres podajemy przy umawianiu oglądania.',
     'detail.map': 'Otwórz w mapach',
     'detail.nearby': 'W okolicy',
     'detail.book': 'Sprawdź dostępność',

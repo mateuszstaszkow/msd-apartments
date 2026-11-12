@@ -28,9 +28,9 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Fałata',
+    street: 'ul. Fałata 15A',
     beach: { minutes: 18, mode: 'car' },
-    campusMinutes: 5,
+    campusMinutes: 6,
     nearby: [
       { en: 'About 200 m to the bus stops', pl: 'Ok. 200 m do przystanków autobusowych' },
       {
@@ -77,7 +77,7 @@ export const apartments: Apartment[] = [
       },
     ],
     videos: { presentation: 'JiDVGROMxqQ', pov: 'lWZSBCnC00s' },
-    coords: { lat: 54.2014, lng: 16.1976 },
+    coords: { lat: 54.201, lng: 16.1953 },
     featured: true,
     rented: true,
     photosPending: true,
@@ -151,7 +151,7 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Gałczyńskiego',
+    street: 'ul. Gałczyńskiego 2',
     beach: { minutes: 17, mode: 'car' },
     campusMinutes: 13,
     nearby: [
@@ -195,7 +195,7 @@ export const apartments: Apartment[] = [
       { en: 'A cellar belongs to the flat', pl: 'Do mieszkania przynależy piwnica' },
     ],
     videos: { presentation: 'sBWYsI9pejg', pov: 'XO3isQPx3Vo' },
-    coords: { lat: 54.1984, lng: 16.19 },
+    coords: { lat: 54.1986, lng: 16.1902 },
     rented: true,
   },
   {
@@ -213,9 +213,9 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Melchiora Wańkowicza',
+    street: 'ul. Wańkowicza 44',
     beach: { minutes: 17, mode: 'car' },
-    campusMinutes: 10,
+    campusMinutes: 12,
     nearby: [
       {
         en: '300 m to the Staszica, ZUS and Wańkowicza stops',
@@ -264,7 +264,7 @@ export const apartments: Apartment[] = [
       { en: 'Everything new after the 2022 renovation', pl: 'Wszystko nowe po remoncie z 2022 roku' },
     ],
     videos: { presentation: 'VETQRa2nhbI', pov: 'lhJNXaWSExc' },
-    coords: { lat: 54.2024, lng: 16.1901 },
+    coords: { lat: 54.2014, lng: 16.1901 },
     rented: true,
   },
   {
@@ -282,9 +282,9 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Jana Pawła II',
+    street: 'ul. Jana Pawła II 9A',
     beach: { minutes: 17, mode: 'car' },
-    campusMinutes: 4,
+    campusMinutes: 7,
     nearby: [
       {
         en: 'Opposite the main building of Koszalin University of Technology',
@@ -331,7 +331,7 @@ export const apartments: Apartment[] = [
       { en: 'Desk and office chair for working from home', pl: 'Biurko i krzesło biurowe do pracy zdalnej' },
     ],
     videos: { pov: '6-MAlsbBHlE' },
-    coords: { lat: 54.2034, lng: 16.1957 },
+    coords: { lat: 54.2032, lng: 16.1932 },
     featured: true,
     rented: true,
   },
@@ -350,9 +350,9 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Lelewela',
+    street: 'ul. Lelewela 12',
     beach: { minutes: 16, mode: 'car' },
-    campusMinutes: 11,
+    campusMinutes: 14,
     nearby: [
       { en: 'Under 200 m to the bus stop', pl: 'Niecałe 200 m do przystanku autobusowego' },
       {
@@ -397,7 +397,7 @@ export const apartments: Apartment[] = [
       },
     ],
     videos: { presentation: 'Yax3pRo_-mw', vertical: true, poster: 'apartments/fala/poster.jpg' },
-    coords: { lat: 54.2092, lng: 16.1997 },
+    coords: { lat: 54.2098, lng: 16.2 },
     rented: true,
     photosPending: true,
   },

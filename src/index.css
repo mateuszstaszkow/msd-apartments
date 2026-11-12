@@ -126,3 +126,18 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Outside @layer so Tailwind keeps them (Leaflet's classes never appear in the source).
+   Leaflet's stylesheet loads later with the map chunk, hence the doubled specificity. */
+div.leaflet-container {
+  font-family: inherit;
+}
+.leaflet-container .leaflet-popup-content p {
+  margin: 0;
+}
+.leaflet-container .leaflet-popup-content a {
+  @apply mt-1 inline-block text-xs font-semibold text-sea-700;
+}
+.leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+}

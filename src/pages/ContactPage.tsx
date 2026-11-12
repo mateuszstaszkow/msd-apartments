@@ -7,16 +7,10 @@ import { site } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { usePageMeta } from '@/lib/hooks';
 import { YoutubeIcon } from '@/components/ui/BrandIcons';
+import { LazyKoszalinMap } from '@/components/map/LazyKoszalinMap';
 import { ButtonAnchor } from '@/components/ui/Button';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
-
-/** OpenStreetMap embed centred on the office, with a marker on the door. */
-const officeMapUrl = (() => {
-  const { lat, lng } = site.office.coords;
-  const bbox = [lng - 0.006, lat - 0.003, lng + 0.006, lat + 0.003].join(',');
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${encodeURIComponent(`${lat},${lng}`)}`;
-})();
 
 export function ContactPage() {
   const { t } = useI18n();
@@ -332,12 +326,7 @@ export function ContactPage() {
               </div>
 
               <div className="mt-8 overflow-hidden rounded-2xl border border-sea-100">
-                <iframe
-                  title={`${site.name} — ${site.office.street}, ${site.office.city}`}
-                  src={officeMapUrl}
-                  loading="lazy"
-                  className="h-56 w-full border-0"
-                />
+                <LazyKoszalinMap className="h-80 w-full" />
               </div>
             </div>
           </Reveal>

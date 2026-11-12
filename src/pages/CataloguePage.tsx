@@ -8,8 +8,10 @@ import { useI18n } from '@/i18n';
 import { cx } from '@/lib/format';
 import { usePageMeta } from '@/lib/hooks';
 import { ApartmentCard } from '@/components/apartments/ApartmentCard';
+import { LazyKoszalinMap } from '@/components/map/LazyKoszalinMap';
 import { Button } from '@/components/ui/Button';
 import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 type LocationFilter = 'all' | 'PL' | 'ES';
 type OfferFilter = 'all' | 'rent' | 'sale';
@@ -201,6 +203,17 @@ export function CataloguePage() {
               </AnimatePresence>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      <section className="bg-sea-50/60 py-20 lg:py-24">
+        <div className="container-page">
+          <SectionHeading eyebrow={t('map.eyebrow')} title={t('map.title')} subtitle={t('map.subtitle')} />
+          <Reveal delay={0.1}>
+            <div className="mt-10 overflow-hidden rounded-[2rem] border border-sea-100 shadow-soft">
+              <LazyKoszalinMap className="h-[26rem] w-full sm:h-[32rem]" />
+            </div>
+          </Reveal>
         </div>
       </section>
     </>
