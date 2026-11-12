@@ -409,8 +409,8 @@ export const apartments: Apartment[] = [
       pl: 'Mieszkanie 32 m² dla dwóch osób przy ul. Kołłątaja',
     },
     description: {
-      en: 'A 32 m² one-room flat for two people on ul. Kołłątaja in Koszalin, on the first floor of a building without a lift. It comes furnished, with two sleeping places: a double bed and a sofa. The white kitchen has wooden worktops and a gas cooker; the bathroom has a bathtub with a rain shower, an LED mirror and a washing machine. The room has a TV and a desk. Electricity is billed every other month by usage.',
-      pl: 'Jednopokojowe mieszkanie o powierzchni 32 m² dla dwóch osób przy ul. Kołłątaja w Koszalinie, na pierwszym piętrze budynku bez windy. Jest umeblowane i ma dwa miejsca do spania: łóżko dwuosobowe i sofę. Biała kuchnia ma drewniane blaty i kuchenkę gazową, a łazienka wannę z deszczownicą, podświetlane lustro i pralkę. W pokoju są telewizor i biurko. Prąd rozliczany co dwa miesiące według zużycia.',
+      en: 'A 32 m² one-room flat for two people on ul. Kołłątaja in Koszalin, on the first floor of a building without a lift. It comes furnished, with two sleeping places: a double bed and a sofa. The white kitchen has wooden worktops and a gas cooker; the bathroom has a bathtub with a rain shower, an LED mirror and a washing machine. The room has a smart TV and a desk. Electricity is billed every other month by usage.',
+      pl: 'Jednopokojowe mieszkanie o powierzchni 32 m² dla dwóch osób przy ul. Kołłątaja w Koszalinie, na pierwszym piętrze budynku bez windy. Jest umeblowane i ma dwa miejsca do spania: łóżko dwuosobowe i sofę. Biała kuchnia ma drewniane blaty i kuchenkę gazową, a łazienka wannę z deszczownicą, podświetlane lustro i pralkę. W pokoju są smart TV i biurko. Prąd rozliczany co dwa miesiące według zużycia.',
     },
     city: 'Koszalin',
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
@@ -430,7 +430,7 @@ export const apartments: Apartment[] = [
     serviceCharge: 850,
     deposit: 3000,
     currency: 'PLN',
-    amenities: ['furnished', 'kitchen', 'washingMachine', 'workspace'],
+    amenities: ['furnished', 'kitchen', 'washingMachine', 'tv', 'workspace'],
     highlights: [
       {
         en: 'Electricity billed every other month by usage',
