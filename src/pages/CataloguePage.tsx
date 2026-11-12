@@ -12,6 +12,7 @@ import { LazyKoszalinMap } from '@/components/map/LazyKoszalinMap';
 import { Button } from '@/components/ui/Button';
 import { AnimatedWords, Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { WaitlistButton } from '@/components/waitlist/WaitlistButton';
 
 type LocationFilter = 'all' | 'PL' | 'ES';
 type OfferFilter = 'all' | 'rent' | 'sale';
@@ -203,6 +204,16 @@ export function CataloguePage() {
               </AnimatePresence>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      <section className="border-y border-sea-100 bg-white py-16 lg:py-20">
+        <div className="container-page flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="max-w-xl">
+            <h2 className="font-display text-2xl font-semibold sm:text-3xl">{t('waitlist.title.any')}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft sm:text-base">{t('waitlist.text.any')}</p>
+          </div>
+          <WaitlistButton variant="primary" className="shrink-0" />
         </div>
       </section>
 

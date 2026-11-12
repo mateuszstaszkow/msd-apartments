@@ -154,6 +154,23 @@ checked by Supabase Auth, and row-level security only lets that account write.
 Until `site.supabase` is filled in, the site uses the built-in data and `/admin`
 says it is not connected.
 
+### Availability alerts
+
+Visitors can ask to be e-mailed when a specific apartment — or any apartment —
+is marked available. Addresses land in `availability_alerts`. When `/admin`
+saves a status change to **Available**, it calls the Edge Function
+`notify-available`, which e-mails those people a link and the phone number
+(via [Brevo](https://www.brevo.com), free tier).
+
+One-time e-mail setup:
+
+1. Create a free Brevo account and verify `msdapartments@gmail.com` as a sender
+   (Settings → Senders — confirmation link in the inbox, no DNS needed).
+2. SMTP & API → API keys → create a key.
+3. Supabase → Edge Functions → deploy
+   [`supabase/functions/notify-available`](supabase/functions/notify-available),
+   then Secrets → add `BREVO_API_KEY` (and optionally `SITE_URL`, `FROM_EMAIL`).
+
 ### Contact form
 
 Messages are posted to [FormSubmit](https://formsubmit.co) (`site.formEndpoint`),

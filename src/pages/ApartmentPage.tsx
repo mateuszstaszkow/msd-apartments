@@ -42,6 +42,7 @@ import { ButtonAnchor, ButtonLink } from '@/components/ui/Button';
 import { AnimatedWords, Reveal, useReveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SmartImage } from '@/components/ui/SmartImage';
+import { WaitlistButton } from '@/components/waitlist/WaitlistButton';
 
 export function ApartmentPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -333,14 +334,32 @@ export function ApartmentPage() {
                   <Phone className="h-4 w-4" />
                   {site.phone.display}
                 </ButtonAnchor>
-                <ButtonLink
-                  to={`/contact?apartment=${apartment.slug}`}
-                  variant="secondary"
-                  size="lg"
-                  className="w-full"
-                >
-                  {t(apartment.rented ? 'detail.waitlist' : monthly ? 'detail.viewing' : 'detail.book')}
-                </ButtonLink>
+                {apartment.rented ? (
+                  <WaitlistButton
+                    slug={apartment.slug}
+                    apartmentName={apartment.name}
+                    className="w-full"
+                  />
+                ) : (
+                  <ButtonLink
+                    to={`/contact?apartment=${apartment.slug}`}
+                    variant="secondary"
+                    size="lg"
+                    className="w-full"
+                  >
+                    {t(monthly ? 'detail.viewing' : 'detail.book')}
+                  </ButtonLink>
+                )}
+                {apartment.rented && (
+                  <ButtonLink
+                    to={`/contact?apartment=${apartment.slug}`}
+                    variant="ghost"
+                    size="lg"
+                    className="w-full"
+                  >
+                    {t('detail.waitlist')}
+                  </ButtonLink>
+                )}
                 {apartment.listingUrl && (
                   <ButtonAnchor
                     href={apartment.listingUrl}

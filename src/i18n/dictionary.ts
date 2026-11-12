@@ -127,6 +127,20 @@ export const dictionary = {
     'detail.rented.text':
       'This apartment has a tenant at the moment. Call or write and we will let you know as soon as it frees up.',
     'detail.waitlist': 'Ask about the next opening',
+    'waitlist.button': 'Notify me when it is free',
+    'waitlist.button.any': 'Notify me about a free apartment',
+    'waitlist.title': 'Get notified about {name}',
+    'waitlist.title.any': 'Get notified about free apartments',
+    'waitlist.text':
+      'Leave your e-mail. The moment this apartment is marked available, we send you a link and our phone number.',
+    'waitlist.text.any':
+      'Leave your e-mail. The moment any of our apartments is marked available, we send you a link and our phone number.',
+    'waitlist.email': 'E-mail',
+    'waitlist.submit': 'Notify me',
+    'waitlist.sending': 'Saving…',
+    'waitlist.success': 'You are on the list. We will write as soon as it is free.',
+    'waitlist.error': 'Could not save your e-mail. Please try again in a moment.',
+    'waitlist.privacy': 'We use the address only to tell you the apartment is free. More in the',
     'detail.call': 'Call about {name}',
     'detail.sale': 'Also for sale',
     'detail.salePrice': 'Asking price',
@@ -161,6 +175,9 @@ export const dictionary = {
     'admin.saveError': 'Could not save: {error}',
     'admin.sessionExpired': 'Your session has expired, please sign in again.',
     'admin.view': 'View on site',
+    'admin.notified': 'Saved. Notifications sent: {n}.',
+    'admin.notified.none': 'Saved. Nobody was waiting for these apartments.',
+    'admin.notified.error': 'Saved, but notifications failed: {error}',
 
     'facts.area': 'Area',
     'facts.rooms': 'Rooms',
@@ -426,6 +443,20 @@ export const dictionary = {
     'detail.rented.text':
       'To mieszkanie ma teraz najemcę. Zadzwoń lub napisz, a damy znać, gdy tylko się zwolni.',
     'detail.waitlist': 'Zapytaj o wolny termin',
+    'waitlist.button': 'Powiadom mnie, gdy będzie wolne',
+    'waitlist.button.any': 'Powiadom mnie o wolnym mieszkaniu',
+    'waitlist.title': 'Powiadomienie o {name}',
+    'waitlist.title.any': 'Powiadomienie o wolnym mieszkaniu',
+    'waitlist.text':
+      'Zostaw e-mail. Gdy oznaczymy to mieszkanie jako wolne, dostaniesz link do oferty i nasz numer telefonu.',
+    'waitlist.text.any':
+      'Zostaw e-mail. Gdy którekolwiek z naszych mieszkań oznaczymy jako wolne, dostaniesz link do oferty i nasz numer telefonu.',
+    'waitlist.email': 'E-mail',
+    'waitlist.submit': 'Powiadom mnie',
+    'waitlist.sending': 'Zapisywanie…',
+    'waitlist.success': 'Jesteś na liście. Napiszemy, gdy tylko będzie wolne.',
+    'waitlist.error': 'Nie udało się zapisać e-maila. Spróbuj za chwilę ponownie.',
+    'waitlist.privacy': 'Adresu używamy wyłącznie, żeby powiedzieć Ci, że mieszkanie jest wolne. Więcej w',
     'detail.call': 'Zapytaj o {name}',
     'detail.sale': 'Również na sprzedaż',
     'detail.salePrice': 'Cena ofertowa',
@@ -460,6 +491,9 @@ export const dictionary = {
     'admin.saveError': 'Nie udało się zapisać: {error}',
     'admin.sessionExpired': 'Sesja wygasła, zaloguj się ponownie.',
     'admin.view': 'Zobacz na stronie',
+    'admin.notified': 'Zapisano. Wysłane powiadomienia: {n}.',
+    'admin.notified.none': 'Zapisano. Nikt nie czekał na te mieszkania.',
+    'admin.notified.error': 'Zapisano, ale powiadomienia nie doszły: {error}',
 
     'facts.area': 'Powierzchnia',
     'facts.rooms': 'Pokoje',

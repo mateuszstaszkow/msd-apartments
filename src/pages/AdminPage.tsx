@@ -14,6 +14,7 @@ import {
   signOut,
   type AdminSession,
 } from '@/lib/adminApi';
+import { notifyAvailable } from '@/lib/waitlistApi';
 import { Button } from '@/components/ui/Button';
 
 interface Row {
@@ -168,21 +169,23 @@ function Editor({
 }) {
   const { t, locale } = useI18n();
   const [rows, setRows] = useState<Record<string, Row>>({});
+  const [savedStatus, setSavedStatus] = useState<Record<string, Row['status']>>({});
   const [state, setState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
     fetchOverrides()
       .then((overrides) => {
         setOverrides(overrides);
-        setRows(
-          Object.fromEntries(
-            apartments.map((apartment) => [
-              apartment.slug,
-              toRow(overrides.find((row) => row.slug === apartment.slug)),
-            ]),
-          ),
+        const next = Object.fromEntries(
+          apartments.map((apartment) => [
+            apartment.slug,
+            toRow(overrides.find((row) => row.slug === apartment.slug)),
+          ]),
         );
+        setRows(next);
+        setSavedStatus(Object.fromEntries(Object.entries(next).map(([slug, row]) => [slug, row.status])));
       })
       .catch((reason: unknown) => {
         setState('error');
@@ -193,23 +196,45 @@ function Editor({
   function update(slug: string, patch: Partial<Row>) {
     setRows((current) => ({ ...current, [slug]: { ...(current[slug] ?? emptyRow), ...patch } }));
     setState('idle');
+    setMessage('');
   }
 
   async function save(event: FormEvent) {
     event.preventDefault();
     setState('saving');
+    setMessage('');
     const payload = apartments.map((apartment) => toOverride(apartment.slug, rows[apartment.slug] ?? emptyRow));
+    const freed = payload
+      .filter((row) => row.status === 'free' && savedStatus[row.slug] !== 'free')
+      .map((row) => row.slug);
     try {
       await saveOverrides(session, payload);
       setOverrides(await fetchOverrides());
-      setState('saved');
+      setSavedStatus(Object.fromEntries(payload.map((row) => [row.slug, row.status ?? ''])));
+
+      if (freed.length === 0) {
+        setState('saved');
+        setMessage(t('admin.saved'));
+        return;
+      }
+
+      const result = await notifyAvailable(session, freed);
+      if (result.error) {
+        setState('error');
+        setError(t('admin.notified.error', { error: result.error }));
+      } else {
+        setState('saved');
+        setMessage(
+          result.sent > 0 ? t('admin.notified', { n: result.sent }) : t('admin.notified.none'),
+        );
+      }
     } catch (reason) {
       if (reason instanceof SessionExpiredError) {
         onSignOut(t('admin.sessionExpired'));
         return;
       }
       setState('error');
-      setError(reason instanceof Error ? reason.message : String(reason));
+      setError(t('admin.saveError', { error: reason instanceof Error ? reason.message : String(reason) }));
     }
   }
 
@@ -297,8 +322,10 @@ function Editor({
           <Save className="h-4 w-4" />
           {t(state === 'saving' ? 'admin.saving' : 'admin.save')}
         </Button>
-        {state === 'saved' && <p className="text-sm font-semibold text-emerald-700">{t('admin.saved')}</p>}
-        {state === 'error' && <p className="text-sm text-red-700">{t('admin.saveError', { error })}</p>}
+        {state === 'saved' && (
+          <p className="text-sm font-semibold text-emerald-700">{message || t('admin.saved')}</p>
+        )}
+        {state === 'error' && <p className="text-sm text-red-700">{error}</p>}
       </div>
     </form>
   );

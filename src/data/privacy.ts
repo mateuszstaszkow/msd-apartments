@@ -36,6 +36,10 @@ export const privacySections: { title: Localized; paragraphs: Localized[] }[] = 
         pl: 'Ustalenie, dochodzenie lub obrona roszczeń, gdyby doszło do sporu — art. 6 ust. 1 lit. f RODO.',
       },
       {
+        en: 'Availability alerts: your e-mail address and, if you choose a specific apartment, its name. We use them only to tell you when that apartment (or any apartment, if you asked for that) is marked available — Art. 6(1)(a) GDPR (your consent, given when you submit the form). You can withdraw consent by writing to us.',
+        pl: 'Powiadomienia o dostępności: adres e-mail oraz, jeśli wybierzesz konkretne mieszkanie, jego nazwę. Używamy ich wyłącznie, żeby powiedzieć Ci, że to mieszkanie (albo dowolne, jeśli o to prosiłeś) jest wolne — art. 6 ust. 1 lit. a RODO (Twoja zgoda przy wysłaniu formularza). Zgodę możesz wycofać, pisząc do nas.',
+      },
+      {
         en: 'Giving your data is voluntary, but without an e-mail address or phone number we cannot reply to you.',
         pl: 'Podanie danych jest dobrowolne, ale bez adresu e-mail lub numeru telefonu nie będziemy mogli Ci odpowiedzieć.',
       },
@@ -45,8 +49,8 @@ export const privacySections: { title: Localized; paragraphs: Localized[] }[] = 
     title: { en: '3. Who receives the data', pl: '3. Komu przekazujemy dane' },
     paragraphs: [
       {
-        en: 'Only the providers we need to run the service: FormSubmit (formsubmit.co), which delivers messages from the contact form to our inbox; Google (Gmail mailbox); GitHub (hosting of this website); our accounting office and, for Laguna, Booking.com when you book through that platform. Some of these providers are based in the USA; transfers rely on the European Commission standard contractual clauses or the EU–US Data Privacy Framework.',
-        pl: 'Wyłącznie dostawcom, bez których serwis nie działa: FormSubmit (formsubmit.co), który dostarcza wiadomości z formularza do naszej skrzynki; Google (skrzynka Gmail); GitHub (hosting tej strony); biuru rachunkowemu, a w przypadku Laguny — Booking.com, jeśli rezerwujesz przez tę platformę. Część z tych dostawców ma siedzibę w USA; przekazanie odbywa się na podstawie standardowych klauzul umownych Komisji Europejskiej lub programu EU–US Data Privacy Framework.',
+        en: 'Only the providers we need to run the service: FormSubmit (formsubmit.co), which delivers messages from the contact form to our inbox; Supabase (storage of availability alerts); Brevo (sending those alert e-mails); Google (Gmail mailbox); GitHub (hosting of this website); our accounting office and, for Laguna, Booking.com when you book through that platform. Some of these providers are based in the USA; transfers rely on the European Commission standard contractual clauses or the EU–US Data Privacy Framework.',
+        pl: 'Wyłącznie dostawcom, bez których serwis nie działa: FormSubmit (formsubmit.co), który dostarcza wiadomości z formularza do naszej skrzynki; Supabase (przechowywanie zgłoszeń o powiadomienie); Brevo (wysyłka tych powiadomień); Google (skrzynka Gmail); GitHub (hosting tej strony); biuru rachunkowemu, a w przypadku Laguny — Booking.com, jeśli rezerwujesz przez tę platformę. Część z tych dostawców ma siedzibę w USA; przekazanie odbywa się na podstawie standardowych klauzul umownych Komisji Europejskiej lub programu EU–US Data Privacy Framework.',
       },
       {
         en: 'We never sell your data and we do not use it for marketing without your separate consent.',
@@ -60,6 +64,10 @@ export const privacySections: { title: Localized; paragraphs: Localized[] }[] = 
       {
         en: 'Enquiries that do not lead to an agreement: up to 12 months after the last message. Agreements and accounting documents: for as long as tax law requires (usually 5 years from the end of the year in which the tax was due) and until any claims become time-barred.',
         pl: 'Zapytania, które nie zakończyły się umową: do 12 miesięcy od ostatniej wiadomości. Umowy i dokumenty księgowe: przez okres wymagany przepisami podatkowymi (co do zasady 5 lat od końca roku, w którym powstał obowiązek podatkowy) oraz do przedawnienia ewentualnych roszczeń.',
+      },
+      {
+        en: 'Availability alerts for a specific apartment: until we send the notification that it is free, or until you ask us to remove your address. Alerts for any apartment: until you ask us to remove your address.',
+        pl: 'Powiadomienia o konkretnym mieszkaniu: do momentu wysłania informacji, że jest wolne, albo do chwili, gdy poprosisz o usunięcie adresu. Powiadomienia o dowolnym mieszkaniu: do chwili, gdy poprosisz o usunięcie adresu.',
       },
     ],
   },
