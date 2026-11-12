@@ -350,9 +350,9 @@ export const apartments: Apartment[] = [
     district: { en: 'Przylesie', pl: 'Przylesie' },
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
     country: 'PL',
-    street: 'ul. Lelewela 12',
+    street: 'ul. Lelewela 11',
     beach: { minutes: 16, mode: 'car' },
-    campusMinutes: 14,
+    campusMinutes: 13,
     nearby: [
       { en: 'Under 200 m to the bus stop', pl: 'Niecałe 200 m do przystanku autobusowego' },
       {
@@ -397,12 +397,11 @@ export const apartments: Apartment[] = [
       },
     ],
     videos: { presentation: 'Yax3pRo_-mw', vertical: true, poster: 'apartments/fala/poster.jpg' },
-    coords: { lat: 54.2098, lng: 16.2 },
+    coords: { lat: 54.2096, lng: 16.2026 },
     rented: true,
     photosPending: true,
   },
   {
-    // TODO: equipment, neighbourhood and a fuller description are still missing.
     slug: 'bryza',
     name: 'Bryza',
     tagline: {
@@ -410,8 +409,8 @@ export const apartments: Apartment[] = [
       pl: 'Mieszkanie 32 m² dla dwóch osób przy ul. Kołłątaja',
     },
     description: {
-      en: 'A 32 m² one-room flat for two people on ul. Kołłątaja in Koszalin, on the first floor of a building without a lift. It has two sleeping places and its own bathroom. Electricity is billed every other month by usage.',
-      pl: 'Jednopokojowe mieszkanie o powierzchni 32 m² dla dwóch osób przy ul. Kołłątaja w Koszalinie, na pierwszym piętrze budynku bez windy. Ma dwa miejsca do spania i własną łazienkę. Prąd rozliczany co dwa miesiące według zużycia.',
+      en: 'A 32 m² one-room flat for two people on ul. Kołłątaja in Koszalin, on the first floor of a building without a lift. It comes furnished, with two sleeping places: a double bed and a sofa. The white kitchen has wooden worktops and a gas cooker; the bathroom has a bathtub with a rain shower, an LED mirror and a washing machine. The room has a TV and a desk. Electricity is billed every other month by usage.',
+      pl: 'Jednopokojowe mieszkanie o powierzchni 32 m² dla dwóch osób przy ul. Kołłątaja w Koszalinie, na pierwszym piętrze budynku bez windy. Jest umeblowane i ma dwa miejsca do spania: łóżko dwuosobowe i sofę. Biała kuchnia ma drewniane blaty i kuchenkę gazową, a łazienka wannę z deszczownicą, podświetlane lustro i pralkę. W pokoju są telewizor i biurko. Prąd rozliczany co dwa miesiące według zużycia.',
     },
     city: 'Koszalin',
     region: { en: 'Baltic Sea, Poland', pl: 'Bałtyk, Polska' },
@@ -431,7 +430,7 @@ export const apartments: Apartment[] = [
     serviceCharge: 850,
     deposit: 3000,
     currency: 'PLN',
-    amenities: [],
+    amenities: ['furnished', 'kitchen', 'washingMachine', 'workspace'],
     highlights: [
       {
         en: 'Electricity billed every other month by usage',
@@ -441,7 +440,7 @@ export const apartments: Apartment[] = [
     videos: {},
     coords: { lat: 54.2088, lng: 16.1975 },
     rented: true,
-    photosPending: true,
+    photoCount: 10,
   },
   {
     // The resort, rooftop jacuzzi, sea view and on-site facilities are from the
@@ -522,9 +521,9 @@ export const apartments: Apartment[] = [
 
 export const PHOTOS_PER_APARTMENT = 8;
 
-/** Photo slots reserved for every apartment: /apartments/<slug>/01.jpg … 08.jpg */
-export function photoPaths(slug: string): string[] {
-  return Array.from({ length: PHOTOS_PER_APARTMENT }, (_, i) =>
+/** Photo slots for an apartment: /apartments/<slug>/01.jpg … 08.jpg, or up to `photoCount`. */
+export function photoPaths(slug: string, count = PHOTOS_PER_APARTMENT): string[] {
+  return Array.from({ length: count }, (_, i) =>
     asset(`apartments/${slug}/${String(i + 1).padStart(2, '0')}.jpg`),
   );
 }

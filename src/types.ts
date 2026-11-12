@@ -98,4 +98,6 @@ export interface Apartment {
   featured?: boolean;
   /** Set to false once real photos land in /public/apartments/<slug>/. */
   photosPending?: boolean;
+  /** Number of photos in /public/apartments/<slug>/ when it is not the usual eight. */
+  photoCount?: number;
 }

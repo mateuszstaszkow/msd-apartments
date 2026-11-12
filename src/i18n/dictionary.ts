@@ -105,7 +105,7 @@ export const dictionary = {
 
     'detail.back': 'Back to catalogue',
     'detail.gallery': 'Gallery',
-    'detail.gallery.subtitle': 'Eight photographs of the apartment',
+    'detail.gallery.subtitle': '{n} photographs of the apartment',
     'detail.gallery.pending':
       'Photos of this apartment are being retouched right now. In the meantime, the films below show every corner.',
     'detail.videos': 'Films',
@@ -404,7 +404,7 @@ export const dictionary = {
 
     'detail.back': 'Wróć do katalogu',
     'detail.gallery': 'Galeria',
-    'detail.gallery.subtitle': 'Osiem zdjęć apartamentu',
+    'detail.gallery.subtitle': '{n} zdjęć apartamentu',
     'detail.gallery.pending':
       'Zdjęcia tego apartamentu są właśnie retuszowane. W międzyczasie filmy poniżej pokazują każdy zakamarek.',
     'detail.videos': 'Filmy',

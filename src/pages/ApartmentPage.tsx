@@ -26,6 +26,7 @@ import {
   apartments,
   coverSources,
   filmStills,
+  PHOTOS_PER_APARTMENT,
   photoPaths,
   renamedSlugs,
 } from '@/data/apartments';
@@ -389,7 +390,7 @@ export function ApartmentPage() {
         <div className="container-page">
           <SectionHeading
             eyebrow={t('detail.gallery')}
-            title={`${apartment.name} — ${t('detail.gallery.subtitle')}`}
+            title={`${apartment.name} — ${t('detail.gallery.subtitle', { n: apartment.photoCount ?? PHOTOS_PER_APARTMENT })}`}
           />
           {apartment.photosPending && (
             <Reveal delay={0.1}>
@@ -401,7 +402,7 @@ export function ApartmentPage() {
 
           <div className="mt-10">
             <Gallery
-              photos={photoPaths(apartment.slug)}
+              photos={photoPaths(apartment.slug, apartment.photoCount)}
               fallbacks={
                 apartment.videos.presentation || apartment.videos.pov
                   ? filmStills(apartment, (apartment.videos.presentation ?? apartment.videos.pov)!)

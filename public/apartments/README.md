@@ -1,7 +1,8 @@
 # Apartment photos
 
 Each apartment reserves **8 photo slots**. Drop the files here and they appear
-on the site immediately — no code change needed.
+on the site immediately — no code change needed. For more than eight, set
+`photoCount` on the apartment in `src/data/apartments.ts`.
 
 ```
 public/apartments/<slug>/01.jpg … 08.jpg
