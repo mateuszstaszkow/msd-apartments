@@ -70,7 +70,7 @@ grant select, delete on public.availability_alerts to authenticated;
 
 drop policy if exists "anyone can subscribe" on public.availability_alerts;
 create policy "anyone can subscribe" on public.availability_alerts
-  for insert to anon, authenticated
+  for insert
   with check (true);
 
 drop policy if exists "admin read alerts" on public.availability_alerts;
