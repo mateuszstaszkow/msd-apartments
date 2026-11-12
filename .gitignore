@@ -11,3 +11,4 @@ dev-dist
 !.vscode/extensions.json
 .idea
 *.log
+supabase/.temp/
